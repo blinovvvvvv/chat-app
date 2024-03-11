@@ -9,25 +9,19 @@ const config: Config = {
 	],
 	theme: {
 		screens: {
-			mobile: '480px',
+			mobile: { max: '480px' },
 			tablet: '640px',
 			desktop: '1280px',
 		},
 		fontSize: {
-			xs: '1rem',
-			sm: '1.15rem',
-			l: '1.3rem',
-			xl: '2rem',
+			xs: '0.875rem',
+			sm: '1rem',
+			l: '1.125rem',
+			xl: '1.75rem',
 		},
 		borderRadius: {
 			s: '5px',
 			DEFAULT: '10px',
-		},
-		transitionTimingFunction: {
-			DEFAULT: 'ease',
-		},
-		transitionDuration: {
-			DEFAULT: '0.2s',
 		},
 		extend: {
 			colors: {
