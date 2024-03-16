@@ -3,9 +3,9 @@
 import Card from '@/components/shared/ui/card/Card';
 import clsx from 'clsx';
 import { memo } from 'react';
-import { useAuthCardStore } from '../model/authCard.store';
-import LoginCard from './LoginCard';
-import SignUpCard from './SignUpCard';
+import { useAuthCardStore } from '../../model/authCard.store';
+import LoginCard from '../LoginCard/LoginCard';
+import SignUpCard from '../SignUpCard/SignUpCard';
 
 function AuthCard() {
 	const tab = useAuthCardStore((state) => state.tab);

@@ -10,7 +10,7 @@ interface InputProps
 	icon?: string;
 	variant?: InputVariant;
 	value: string;
-	onChange: (value: string) => void;
+	onChange?: (value: string) => void;
 }
 
 function Input({

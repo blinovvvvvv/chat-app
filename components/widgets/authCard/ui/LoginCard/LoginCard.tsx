@@ -9,7 +9,7 @@ import Text from '@/components/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
-import { useAuthCardStore } from '../model/authCard.store';
+import { useAuthCardStore } from '../../model/authCard.store';
 
 interface LoginCardProps {
 	className?: string;

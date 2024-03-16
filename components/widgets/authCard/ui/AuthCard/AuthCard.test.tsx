@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import AuthCard from '../ui/AuthCard';
+import AuthCard from './AuthCard';
 
 describe('Page', () => {
 	it('renders a heading', () => {
