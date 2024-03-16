@@ -37,3 +37,5 @@ jobs:
       - name: Unit Testing
         if: always()
         run: npm run test
+      - name: Screenshot testing
+        run: npm run chromatic
