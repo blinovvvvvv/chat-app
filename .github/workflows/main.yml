@@ -1,0 +1,39 @@
+name: pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [21.x]
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    steps:
+      - name: Starting NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Install modules
+        run: pnpm install
+
+      - name: Build project
+        if: always()
+        run: pnpm run build
+
+      - name: Linting
+        if: always()
+        run: pnpm run lint
+
+      - name: Unit Testing
+        if: always()
+        run: pnpm run test
