@@ -34,7 +34,7 @@ function Input({
 				value={value}
 				onChange={onChange}
 				className={clsx(
-					'bg-transparent text-gray-500 outline-none placeholder:text-gray-600 focus:border-gray-400',
+					'w-full bg-transparent text-gray-500 outline-none placeholder:text-gray-600 focus:border-gray-400',
 					className
 				)}
 				{...props}
