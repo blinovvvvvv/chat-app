@@ -24,16 +24,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install modules
-        run: pnpm install
+        run: npm install
 
       - name: Build project
         if: always()
-        run: pnpm run build
+        run: npm run build
 
       - name: Linting
         if: always()
-        run: pnpm run lint
+        run: npm run lint
 
       - name: Unit Testing
         if: always()
-        run: pnpm run test
+        run: npm run test
