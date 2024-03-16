@@ -8,19 +8,28 @@ import Input from '@/components/shared/ui/input/Input';
 import Text from '@/components/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { ChangeEvent, memo, useCallback, useState } from 'react';
+import { ChangeEvent, memo, useCallback } from 'react';
+import { useAuthCardStore } from '../model/authCard.store';
 
 function LoginCard({ className }: { className?: string }) {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const changeTab = useAuthCardStore((state) => state.changeTab);
+	const signupClickHandler = useCallback(() => {
+		changeTab('signup');
+	}, [changeTab]);
+
+	const email = useAuthCardStore((state) => state.email);
+	const changeEmail = useAuthCardStore((state) => state.changeEmail);
+
+	const password = useAuthCardStore((state) => state.password);
+	const changePassword = useAuthCardStore((state) => state.changePassword);
 
 	const onChangeEmail = useCallback(
-		(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
-		[]
+		(e: ChangeEvent<HTMLInputElement>) => changeEmail(e.target.value),
+		[changeEmail]
 	);
 	const onChangePassword = useCallback(
-		(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
-		[]
+		(e: ChangeEvent<HTMLInputElement>) => changePassword(e.target.value),
+		[changePassword]
 	);
 
 	return (
@@ -38,7 +47,11 @@ function LoginCard({ className }: { className?: string }) {
 						<Text className='text-xs text-gray-600'>
 							Don’t have an account yet?
 						</Text>
-						<Button variant='clear' className='text-xs'>
+						<Button
+							onClick={signupClickHandler}
+							variant='clear'
+							className='text-xs'
+						>
 							Sign up
 						</Button>
 					</div>
