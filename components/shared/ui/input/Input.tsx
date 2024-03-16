@@ -4,12 +4,13 @@ import { ChangeEvent, InputHTMLAttributes, memo } from 'react';
 
 type InputVariant = 'normal' | 'small' | 'clear';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps
+	extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
 	className?: string;
 	icon?: string;
 	variant?: InputVariant;
 	value: string;
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	onChange: (value: string) => void;
 }
 
 function Input({
@@ -20,6 +21,9 @@ function Input({
 	variant = 'normal',
 	...props
 }: InputProps) {
+	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		onChange?.(e.target.value);
+	};
 	return (
 		<div
 			className={clsx({
@@ -32,7 +36,7 @@ function Input({
 			{icon && <Image src={icon} alt='Icon' />}
 			<input
 				value={value}
-				onChange={onChange}
+				onChange={onChangeHandler}
 				className={clsx(
 					'w-full bg-transparent text-gray-500 outline-none placeholder:text-gray-600 focus:border-gray-400',
 					className

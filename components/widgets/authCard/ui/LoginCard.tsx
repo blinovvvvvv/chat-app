@@ -8,29 +8,29 @@ import Input from '@/components/shared/ui/input/Input';
 import Text from '@/components/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { ChangeEvent, memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useAuthCardStore } from '../model/authCard.store';
 
-function LoginCard({ className }: { className?: string }) {
+interface LoginCardProps {
+	className?: string;
+	email: string;
+	password: string;
+	onChangeEmail: (email: string) => void;
+	onChangePassword: (password: string) => void;
+}
+
+function LoginCard({
+	className,
+	email,
+	password,
+	onChangeEmail,
+	onChangePassword,
+}: LoginCardProps) {
+	const tab = useAuthCardStore((state) => state.tab);
 	const changeTab = useAuthCardStore((state) => state.changeTab);
 	const signupClickHandler = useCallback(() => {
 		changeTab('signup');
 	}, [changeTab]);
-
-	const email = useAuthCardStore((state) => state.email);
-	const changeEmail = useAuthCardStore((state) => state.changeEmail);
-
-	const password = useAuthCardStore((state) => state.password);
-	const changePassword = useAuthCardStore((state) => state.changePassword);
-
-	const onChangeEmail = useCallback(
-		(e: ChangeEvent<HTMLInputElement>) => changeEmail(e.target.value),
-		[changeEmail]
-	);
-	const onChangePassword = useCallback(
-		(e: ChangeEvent<HTMLInputElement>) => changePassword(e.target.value),
-		[changePassword]
-	);
 
 	return (
 		<div
@@ -51,13 +51,19 @@ function LoginCard({ className }: { className?: string }) {
 							onClick={signupClickHandler}
 							variant='clear'
 							className='text-xs'
+							tabIndex={1}
 						>
 							Sign up
 						</Button>
 					</div>
 				</div>
 			</div>
-			<form className='flex flex-col gap-y-2'>
+			{/** 👇 to disable focus on visually not visible inputs */}
+			<form
+				className={clsx('flex flex-col gap-y-2', {
+					['hidden']: tab === 'signup',
+				})}
+			>
 				<Input
 					type='email'
 					icon={EmailIcon}
@@ -76,9 +82,12 @@ function LoginCard({ className }: { className?: string }) {
 					placeholder='Password'
 					aria-label='Password'
 					autoComplete='new-password'
+					minLength={8}
 					required
 				/>
-				<Button className='mt-10'>Login</Button>
+				<Button className='mt-10' type='submit'>
+					Login
+				</Button>
 			</form>
 		</div>
 	);
