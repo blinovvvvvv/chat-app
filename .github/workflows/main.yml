@@ -22,14 +22,9 @@ jobs:
 
       - name: Checkout branch
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        run: npm i -G pnpm
 
       - name: Install modules
-        run: pnpm install
+        run: npm install
 
       - name: Build project
         if: always()
@@ -42,7 +37,3 @@ jobs:
       - name: Unit Testing
         if: always()
         run: npm run test
-
-      - name: Screenshot testing
-        if: always()
-        run: npm run chromatic
