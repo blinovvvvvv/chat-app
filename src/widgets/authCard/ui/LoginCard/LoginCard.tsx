@@ -1,11 +1,11 @@
 'use client';
 
-import LockIcon from '@/components/shared/assets/lock.svg';
-import Logo from '@/components/shared/assets/logo.svg';
-import EmailIcon from '@/components/shared/assets/mail.svg';
-import Button from '@/components/shared/ui/button/Button';
-import Input from '@/components/shared/ui/input/Input';
-import Text from '@/components/shared/ui/text/Text';
+import LockIcon from '@/src/shared/assets/lock.svg';
+import Logo from '@/src/shared/assets/logo.svg';
+import EmailIcon from '@/src/shared/assets/mail.svg';
+import Button from '@/src/shared/ui/button/Button';
+import Input from '@/src/shared/ui/input/Input';
+import Text from '@/src/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';

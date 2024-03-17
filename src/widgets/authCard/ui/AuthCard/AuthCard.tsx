@@ -1,6 +1,6 @@
 'use client';
 
-import Card from '@/components/shared/ui/card/Card';
+import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
 import { memo } from 'react';
 import { useAuthCardStore } from '../../model/authCard.store';

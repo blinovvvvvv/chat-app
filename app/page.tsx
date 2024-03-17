@@ -1,4 +1,4 @@
-import { AuthCard } from '@/components/widgets/authCard';
+import { AuthCard } from '@/src/widgets/authCard';
 
 export default function Home() {
 	return (

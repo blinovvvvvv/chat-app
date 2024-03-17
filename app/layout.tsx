@@ -1,4 +1,4 @@
-import { Providers } from '@/components/providers';
+import { Providers } from '@/src/app';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.scss';
