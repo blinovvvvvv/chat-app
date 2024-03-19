@@ -3,7 +3,7 @@
 import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
 import { memo } from 'react';
-import { useAuthCardStore } from '../../model/authCard.store';
+import { useAuthCardStore } from '../../model/store/authCard.store';
 import LoginCard from '../LoginCard/LoginCard';
 import SignUpCard from '../SignUpCard/SignUpCard';
 

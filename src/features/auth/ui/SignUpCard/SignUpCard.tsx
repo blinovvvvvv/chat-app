@@ -8,7 +8,7 @@ import Input from '@/src/shared/ui/input/Input';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
-import { useAuthCardStore } from '../../model/authCard.store';
+import { useAuthCardStore } from '../../model/store/authCard.store';
 
 interface SignUpCardProps {
 	className?: string;

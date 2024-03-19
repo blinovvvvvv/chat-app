@@ -9,7 +9,8 @@ import Text from '@/src/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
-import { useAuthCardStore } from '../../model/authCard.store';
+import { register } from '../../model/services/auth.actions';
+import { useAuthCardStore } from '../../model/store/authCard.store';
 
 interface LoginCardProps {
 	className?: string;
@@ -28,9 +29,16 @@ function LoginCard({
 }: LoginCardProps) {
 	const tab = useAuthCardStore((state) => state.tab);
 	const changeTab = useAuthCardStore((state) => state.changeTab);
+
 	const signupClickHandler = useCallback(() => {
 		changeTab('signup');
 	}, [changeTab]);
+
+	const registerWithPayload = register.bind(null, { email, password });
+
+	const formActionHandler = useCallback(() => {
+		register({ email, password });
+	}, [email, password]);
 
 	return (
 		<div
@@ -63,6 +71,7 @@ function LoginCard({
 				className={clsx('flex flex-col gap-y-2', {
 					['hidden']: tab === 'signup',
 				})}
+				action={registerWithPayload}
 			>
 				<Input
 					type='email'
