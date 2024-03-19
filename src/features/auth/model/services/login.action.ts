@@ -1,5 +1,6 @@
 'use server';
 
+import { initializeUserStore } from '@/src/entities/user';
 import { fetchClient } from '@/src/shared/api/fetchClient/fetchClient';
 import {
 	COOKIES_ACCESS_TOKEN_KEY,
@@ -34,6 +35,9 @@ export async function login(payload: AuthPayload) {
 					expires: 1000 * 60 * 60 * 24 * 7, // = 7 days
 				}
 			);
+
+			// 👇 add user to store to get access from everywhere
+			initializeUserStore(data.user);
 		}
 	} catch (error) {
 		console.error(error);
