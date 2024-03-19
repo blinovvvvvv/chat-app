@@ -22,7 +22,7 @@ export async function fetchClient<R, P = void>(
 
 	if (auth) {
 		// get token from cookies
-		const cookiesToken = cookies().get(COOKIES_ACCESS_TOKEN_KEY);
+		const cookiesToken = cookies().get(COOKIES_ACCESS_TOKEN_KEY)?.value;
 
 		if (!cookiesToken) throw new Error('Unauthorized');
 		token = `Bearer ${cookiesToken}`;
