@@ -9,7 +9,7 @@ import Text from '@/src/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
-import { register } from '../../model/services/auth.actions';
+import { login } from '../../model/services/login.action';
 import { useAuthCardStore } from '../../model/store/authCard.store';
 
 interface LoginCardProps {
@@ -34,11 +34,7 @@ function LoginCard({
 		changeTab('signup');
 	}, [changeTab]);
 
-	const registerWithPayload = register.bind(null, { email, password });
-
-	const formActionHandler = useCallback(() => {
-		register({ email, password });
-	}, [email, password]);
+	const registerWithPayload = login.bind(null, { email, password });
 
 	return (
 		<div

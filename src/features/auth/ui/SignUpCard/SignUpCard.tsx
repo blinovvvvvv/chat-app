@@ -8,6 +8,7 @@ import Input from '@/src/shared/ui/input/Input';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
+import { signup } from '../../model/services/signup.action';
 import { useAuthCardStore } from '../../model/store/authCard.store';
 
 interface SignUpCardProps {
@@ -36,6 +37,13 @@ function SignUpCard({
 	const surname = useAuthCardStore((state) => state.surname);
 	const changeSurname = useAuthCardStore((state) => state.changeSurname);
 
+	const signupWithPayload = signup.bind(null, {
+		email,
+		password,
+		name,
+		surname,
+	});
+
 	return (
 		<div
 			className={clsx(
@@ -54,7 +62,7 @@ function SignUpCard({
 					</div>
 				</div>
 			</div>
-			<form className='flex flex-col gap-y-2'>
+			<form action={signupWithPayload} className='flex flex-col gap-y-2'>
 				<Input
 					value={name}
 					onChange={changeName}

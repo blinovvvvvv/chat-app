@@ -9,10 +9,10 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { AuthPayload, AuthResponse } from '../types/auth.types';
 
-export async function register(payload: AuthPayload) {
+export async function signup(payload: AuthPayload) {
 	try {
 		const data = await fetchClient<AuthResponse, AuthPayload>(
-			'/auth/login',
+			'/auth/signup',
 			'POST',
 			payload,
 			undefined,
