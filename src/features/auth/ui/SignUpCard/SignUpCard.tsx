@@ -34,14 +34,14 @@ function SignUpCard({
 	const name = useAuthCardStore((state) => state.name);
 	const changeName = useAuthCardStore((state) => state.changeName);
 
-	const surname = useAuthCardStore((state) => state.surname);
-	const changeSurname = useAuthCardStore((state) => state.changeSurname);
+	const lastname = useAuthCardStore((state) => state.lastname);
+	const changeLastname = useAuthCardStore((state) => state.changeLastname);
 
 	const signupWithPayload = signup.bind(null, {
 		email,
 		password,
 		name,
-		surname,
+		lastname,
 	});
 
 	return (
@@ -71,10 +71,10 @@ function SignUpCard({
 					required
 				/>
 				<Input
-					value={surname}
-					onChange={changeSurname}
-					placeholder='Your surname'
-					aria-label='Your surname'
+					value={lastname}
+					onChange={changeLastname}
+					placeholder='Your lastname'
+					aria-label='Your lastname'
 					required
 				/>
 				<Input

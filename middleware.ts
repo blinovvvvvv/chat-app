@@ -1,12 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { COOKIES_ACCESS_TOKEN_KEY } from './src/shared/const/cookies';
 
-export function middleware(request: NextRequest) {
-	const accessToken = request.cookies.get('accessToken')?.value;
-	const url = request.nextUrl.clone();
-	url.pathname = '/feed';
+export async function middleware(request: NextRequest) {
+	const accessToken = request.cookies.get(COOKIES_ACCESS_TOKEN_KEY)?.value;
 
-	if (accessToken) {
-		return NextResponse.rewrite(url);
+	if (accessToken && !request.nextUrl.pathname.startsWith('/feed')) {
+		return Response.redirect(new URL('/feed', request.url));
+	}
+
+	if (!accessToken && request.nextUrl.pathname !== '/') {
+		return Response.redirect(new URL('/', request.url));
 	}
 }
 

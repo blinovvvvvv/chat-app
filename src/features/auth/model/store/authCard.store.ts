@@ -10,7 +10,7 @@ type AuthCardStore = {
 	email: string;
 	password: string;
 	name: string;
-	surname: string;
+	lastname: string;
 };
 
 type AuthCardAction = {
@@ -21,7 +21,7 @@ type AuthCardAction = {
 	changeEmail: (email: string) => void;
 	changePassword: (password: string) => void;
 	changeName: (name: string) => void;
-	changeSurname: (surname: string) => void;
+	changeLastname: (lastname: string) => void;
 };
 
 export const useAuthCardStore = create<AuthCardStore & AuthCardAction>(
@@ -31,12 +31,12 @@ export const useAuthCardStore = create<AuthCardStore & AuthCardAction>(
 		email: '',
 		password: '',
 		name: '',
-		surname: '',
+		lastname: '',
 
 		changeTab: (tab: AuthCardTab) => set({ tab }),
 		changeEmail: (email: string) => set({ email }),
 		changePassword: (password: string) => set({ password }),
 		changeName: (name: string) => set({ name }),
-		changeSurname: (surname: string) => set({ surname }),
+		changeLastname: (lastname: string) => set({ lastname }),
 	})
 );
