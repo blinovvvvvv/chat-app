@@ -1,7 +1,8 @@
+import { Page } from '@/src/widgets/page';
 import { memo } from 'react';
 
 function FeedPage() {
-	return <div className='mx-auto max-w-[989px] px-3'>FeedDAsd</div>;
+	return <Page>FeedDAsd</Page>;
 }
 
 export default memo(FeedPage);
