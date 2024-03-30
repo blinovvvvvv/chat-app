@@ -14,3 +14,11 @@ export const Default: Story = {
 		placeholder: 'Placeholder',
 	},
 };
+
+export const Small: Story = {
+	args: {
+		value: 'ABOBA',
+		placeholder: 'Placeholder',
+		variant: 'small',
+	},
+};

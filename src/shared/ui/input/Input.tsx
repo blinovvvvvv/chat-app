@@ -10,7 +10,7 @@ interface InputProps
 	icon?: string;
 	variant?: InputVariant;
 	value: string;
-	onChange?: (value: string) => void;
+	onChange: (value: string) => void;
 }
 
 function Input({
@@ -24,23 +24,21 @@ function Input({
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange?.(e.target.value);
 	};
+
 	return (
 		<div
-			className={clsx({
+			className={clsx(className, {
 				['flex items-center gap-x-2.5 rounded border border-dark-gray-200 bg-dark-gray-600 px-5 font-medium transition-all has-[:focus]:border-gray-400']:
 					variant !== 'clear',
 				['py-3']: variant === 'normal',
-				['py-2']: variant === 'small',
+				['py-1.5 text-xs']: variant === 'small',
 			})}
 		>
 			{icon && <Image src={icon} alt='Icon' />}
 			<input
 				value={value}
 				onChange={onChangeHandler}
-				className={clsx(
-					'w-full bg-transparent text-gray-500 outline-none placeholder:text-gray-600 focus:border-gray-400',
-					className
-				)}
+				className='w-full bg-transparent text-gray-500 outline-none placeholder:text-gray-600 focus:border-gray-400'
 				{...props}
 			/>
 		</div>
