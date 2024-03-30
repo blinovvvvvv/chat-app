@@ -10,15 +10,23 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
 	args: {
-		value: 'ABOBA',
+		value: 'Value',
 		placeholder: 'Placeholder',
 	},
 };
 
 export const Small: Story = {
 	args: {
-		value: 'ABOBA',
+		value: 'Value',
 		placeholder: 'Placeholder',
 		variant: 'small',
+	},
+};
+
+export const Clear: Story = {
+	args: {
+		value: 'Value',
+		placeholder: 'Placeholder',
+		variant: 'clear',
 	},
 };

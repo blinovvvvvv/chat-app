@@ -9,7 +9,7 @@ import Text from '@/src/shared/ui/text/Text';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
-import { login } from '../../model/services/login.action';
+import { login } from '../../model/actions/login.action';
 import { useAuthCardStore } from '../../model/store/authCard.store';
 
 interface LoginCardProps {

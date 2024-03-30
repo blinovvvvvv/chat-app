@@ -1,6 +1,12 @@
 'use client';
 
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import {
+	ReactNode,
+	createContext,
+	useCallback,
+	useEffect,
+	useState,
+} from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -9,7 +15,7 @@ interface ThemeContextState {
 	setTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextState>({
+export const ThemeContext = createContext<ThemeContextState>({
 	theme: 'light',
 	setTheme: () => {},
 });
@@ -17,18 +23,34 @@ const ThemeContext = createContext<ThemeContextState>({
 export default function ThemeProvider({ children }: { children: ReactNode }) {
 	const [theme, setTheme] = useState<Theme>('light');
 
+	function setDarkTheme() {
+		document.documentElement.classList.add('dark');
+		localStorage.setItem('theme', JSON.stringify('dark'));
+		setTheme('dark');
+	}
+
+	function setLightTheme() {
+		document.documentElement.classList.remove('dark');
+		localStorage.setItem('theme', JSON.stringify('light'));
+		setTheme('light');
+	}
+
+	const onThemeChange = useCallback((theme: Theme) => {
+		if (theme === 'light') {
+			setLightTheme();
+		} else {
+			setDarkTheme();
+		}
+	}, []);
+
 	useEffect(() => {
 		if (
 			localStorage.getItem('theme') === 'dark' ||
 			window.matchMedia('(prefers-color-scheme: dark)').matches
 		) {
-			document.documentElement.classList.add('dark');
-			localStorage.setItem('theme', JSON.stringify('dark'));
-			setTheme('dark');
+			setDarkTheme();
 		} else {
-			document.documentElement.classList.remove('dark');
-			localStorage.setItem('theme', JSON.stringify('light'));
-			setTheme('light');
+			setLightTheme();
 		}
 	}, []);
 
@@ -36,7 +58,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 		<ThemeContext.Provider
 			value={{
 				theme,
-				setTheme,
+				setTheme: onThemeChange,
 			}}
 		>
 			{children}

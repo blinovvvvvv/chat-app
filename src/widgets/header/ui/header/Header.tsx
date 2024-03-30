@@ -2,6 +2,7 @@
 
 import logo from '@/src/shared/assets/logo.svg';
 import Input from '@/src/shared/ui/input/Input';
+import { AvatarDropdown } from '@/src/widgets/avatar-dropdown';
 import Image from 'next/image';
 import { memo, useState } from 'react';
 
@@ -10,10 +11,11 @@ function Header() {
 
 	return (
 		<header className='h-[50px] bg-dark-gray-300'>
-			<div className='mx-auto grid h-full max-w-[965px] grid-cols-[1fr_600px_56px] items-center gap-x-[66px]'>
+			<div className='mx-auto grid h-full max-w-[965px] grid-cols-[1fr_600px_66px] items-center gap-x-[66px]'>
 				{/** logo */}
 				<Image src={logo} alt='Logotype' />
 
+				{/** find input */}
 				<Input
 					variant='small'
 					placeholder='Find...'
@@ -22,8 +24,7 @@ function Header() {
 					className='max-w-[250px]'
 				/>
 
-				{/** slot for avatar dropdown feature */}
-				<div>Avatar</div>
+				<AvatarDropdown />
 			</div>
 		</header>
 	);
