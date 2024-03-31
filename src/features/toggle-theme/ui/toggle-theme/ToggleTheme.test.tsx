@@ -1,9 +1,14 @@
+import ThemeProvider from '@/src/app/ThemeProvider/ThemeProvider';
 import { fireEvent, render, screen } from '@testing-library/react';
 import ToggleTheme from './ToggleTheme';
 
 describe('ToggleTheme', () => {
 	beforeEach(() => {
-		render(<ToggleTheme />);
+		render(
+			<ThemeProvider>
+				<ToggleTheme />
+			</ThemeProvider>
+		);
 	});
 	it('renders a toggle theme', () => {
 		const component = screen.getByTestId('toggle-theme');

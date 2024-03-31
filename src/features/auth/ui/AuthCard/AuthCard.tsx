@@ -22,10 +22,13 @@ function AuthCard() {
 			data-testid='auth-card'
 		>
 			<div
-				className={clsx('flex gap-x-24 transition-all duration-500', {
-					['-translate-x-[450px] mobile:-translate-x-[390px]']:
-						tab === 'signup',
-				})}
+				className={clsx(
+					'flex gap-x-24 transition-all duration-500 will-change-transform',
+					{
+						['-translate-x-[450px] mobile:-translate-x-[390px]']:
+							tab === 'signup',
+					}
+				)}
 			>
 				<LoginCard
 					email={email}
