@@ -50,19 +50,28 @@ function SignUpCard({
 				'flex flex-shrink-0 basis-full flex-col gap-y-12',
 				className
 			)}
+			data-testid='signup-card'
 		>
 			<div>
 				<div className='flex flex-col items-center gap-y-10 self-center'>
 					<Image src={Logo} alt='logo' />
 					<div className='flex w-[225px] items-center justify-between self-start mobile:w-[200px]'>
-						<Button variant='clear' onClick={onBackClick}>
+						<Button
+							data-testid='signup-card-change-tab'
+							variant='clear'
+							onClick={onBackClick}
+						>
 							⬅️Back
 						</Button>
 						<h1 className='text-xl font-medium'>Sign Up</h1>
 					</div>
 				</div>
 			</div>
-			<form action={signupWithPayload} className='flex flex-col gap-y-2'>
+			<form
+				data-testid='signup-card-form'
+				action={signupWithPayload}
+				className='flex flex-col gap-y-2'
+			>
 				<Input
 					value={name}
 					onChange={changeName}
@@ -85,6 +94,7 @@ function SignUpCard({
 					placeholder='Enter your email'
 					aria-label='Enter your email'
 					autoComplete='email'
+					data-testid='signup-card-email'
 					required
 				/>
 				<Input
@@ -95,6 +105,7 @@ function SignUpCard({
 					placeholder='Password'
 					aria-label='Password'
 					autoComplete='new-password'
+					data-testid='signup-card-password'
 					minLength={8}
 					required
 				/>

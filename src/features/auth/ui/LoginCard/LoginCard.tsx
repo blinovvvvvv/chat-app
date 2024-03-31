@@ -42,6 +42,7 @@ function LoginCard({
 				'flex flex-shrink-0 basis-full flex-col gap-y-12 mobile:gap-y-8',
 				className
 			)}
+			data-testid='login-card'
 		>
 			<div className='flex flex-col items-center gap-y-10 self-center'>
 				<Image src={Logo} alt='logo' />
@@ -56,6 +57,7 @@ function LoginCard({
 							variant='clear'
 							className='text-xs'
 							tabIndex={1}
+							data-testid='login-card-change-tab'
 						>
 							Sign up
 						</Button>
@@ -68,6 +70,7 @@ function LoginCard({
 					['hidden']: tab === 'signup',
 				})}
 				action={registerWithPayload}
+				data-testid='login-card-form'
 			>
 				<Input
 					type='email'
@@ -77,6 +80,7 @@ function LoginCard({
 					placeholder='Email address'
 					aria-label='Email address'
 					autoComplete='email'
+					data-testid='login-card-email'
 					required
 				/>
 				<Input
@@ -87,6 +91,7 @@ function LoginCard({
 					placeholder='Password'
 					aria-label='Password'
 					autoComplete='new-password'
+					data-testid='login-card-password'
 					minLength={8}
 					required
 				/>

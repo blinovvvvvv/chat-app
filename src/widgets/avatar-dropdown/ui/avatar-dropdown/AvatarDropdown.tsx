@@ -21,8 +21,10 @@ function AvatarDropdown() {
 		[setIsVisible]
 	);
 
+	const onLogout = useCallback(() => logout(), []);
+
 	return (
-		<div className='relative h-full' ref={ref}>
+		<div className='relative h-full' ref={ref} data-testid='avatar-dropdown'>
 			<Button
 				variant='clear'
 				className={clsx(
@@ -32,11 +34,13 @@ function AvatarDropdown() {
 					}
 				)}
 				onClick={onClickHandler}
+				data-testid='avatar-dropdown-button'
 			>
 				<Avatar width={34} height={34} />
 
 				{/** arrow */}
 				<Image
+					data-testid='avatar-dropdown-arrow'
 					src={arrowIcon}
 					alt='Arrow'
 					className={clsx('transition-transform', {
@@ -47,6 +51,7 @@ function AvatarDropdown() {
 
 			{/** Panel */}
 			<Card
+				data-testid='avatar-dropdown-panel'
 				className={clsx(
 					'absolute right-0 top-[calc(100%+10px)] flex w-[250px] flex-col gap-y-[10px] rounded border border-dark-gray-200 bg-dark-gray-500 p-5 transition-opacity',
 					{
@@ -55,10 +60,10 @@ function AvatarDropdown() {
 					}
 				)}
 			>
-				<ProfileHeading />
+				<ProfileHeading data-testid='avatar-dropdown-profile-heading' />
 				<ToggleTheme className='flex justify-between' />
 				<Button
-					onClick={() => logout()}
+					onClick={onLogout}
 					className='self-start text-xs text-red'
 					variant='clear'
 				>

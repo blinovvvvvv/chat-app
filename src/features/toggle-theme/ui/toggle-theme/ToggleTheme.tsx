@@ -15,7 +15,7 @@ function ToggleTheme({ className }: { className?: string }) {
 	);
 
 	return (
-		<div className={clsx('select-none', className)}>
+		<div className={clsx('select-none', className)} data-testid='toggle-theme'>
 			<span className='text-xs font-medium'>Dark theme</span>
 			<Button
 				className='text-xs text-blue'
