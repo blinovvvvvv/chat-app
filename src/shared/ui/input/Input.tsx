@@ -28,7 +28,7 @@ function Input({
 	return (
 		<div
 			className={clsx(className, {
-				['flex items-center gap-x-2.5 rounded border border-dark-gray-200 bg-dark-gray-600 px-5 font-medium transition-all has-[:focus]:border-gray-400']:
+				['flex items-center gap-x-2.5 rounded border border-gray-400 bg-transparent px-5 font-medium transition-colors has-[:focus]:border-dark-gray-100 dark:border-dark-gray-200 dark:bg-dark-gray-600 dark:has-[:focus]:border-gray-400']:
 					variant !== 'clear',
 				['py-3']: variant === 'normal',
 				['py-1.5 text-xs']: variant === 'small',
@@ -38,7 +38,7 @@ function Input({
 			<input
 				value={value}
 				onChange={onChangeHandler}
-				className='w-full bg-transparent text-gray-500 outline-none placeholder:text-gray-600 focus:border-gray-400'
+				className='w-full bg-transparent text-black outline-none placeholder:text-gray-600 focus:border-dark-gray-300 dark:text-gray-500 dark:focus:border-gray-400'
 				{...props}
 			/>
 		</div>

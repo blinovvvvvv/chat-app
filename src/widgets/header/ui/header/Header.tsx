@@ -10,7 +10,7 @@ function Header() {
 	const [findValue, setFindValue] = useState('');
 
 	return (
-		<header className='h-[50px] bg-dark-gray-300'>
+		<header className='h-[50px] bg-gray-200 transition-colors dark:bg-dark-gray-300'>
 			<div className='mx-auto grid h-full max-w-[965px] grid-cols-[1fr_600px_66px] items-center gap-x-[66px]'>
 				{/** logo */}
 				<Image src={logo} alt='Logotype' />

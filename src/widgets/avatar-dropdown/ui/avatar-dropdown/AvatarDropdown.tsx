@@ -28,9 +28,9 @@ function AvatarDropdown() {
 			<Button
 				variant='clear'
 				className={clsx(
-					'flex h-full items-center justify-center gap-x-2 px-[5px] transition-colors hover:bg-dark-gray-500',
+					'flex h-full items-center justify-center gap-x-2 px-[5px] transition-colors hover:bg-gray-400 dark:hover:bg-dark-gray-500',
 					{
-						['bg-dark-gray-500']: visible,
+						['bg-gray-400 dark:bg-dark-gray-500']: visible,
 					}
 				)}
 				onClick={onClickHandler}
@@ -53,7 +53,7 @@ function AvatarDropdown() {
 			<Card
 				data-testid='avatar-dropdown-panel'
 				className={clsx(
-					'absolute right-0 top-[calc(100%+10px)] flex w-[250px] flex-col gap-y-[10px] rounded border border-dark-gray-200 bg-dark-gray-500 p-5 transition-opacity',
+					'absolute right-0 top-[calc(100%+10px)] flex w-[250px] flex-col gap-y-[10px] rounded border border-gray-400 bg-gray-100 p-5 transition-all dark:border-dark-gray-200 dark:bg-dark-gray-500',
 					{
 						['block opacity-100']: visible,
 						['invisible opacity-0']: !visible,
