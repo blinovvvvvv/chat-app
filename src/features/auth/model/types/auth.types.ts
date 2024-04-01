@@ -1,3 +1,5 @@
+import { User } from '@/src/entities/user';
+
 export interface AuthPayload {
 	email: string;
 	password: string;
@@ -11,5 +13,5 @@ export interface JwtTokens {
 }
 
 export interface AuthResponse extends JwtTokens {
-	user: any;
+	user: User;
 }

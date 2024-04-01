@@ -1,4 +1,4 @@
-import ThemeProvider from '@/src/app/ThemeProvider/ThemeProvider';
+import ThemeProvider from '@/src/app/theme-provider/ThemeProvider';
 import { fireEvent, render, screen } from '@testing-library/react';
 import ToggleTheme from './ToggleTheme';
 
