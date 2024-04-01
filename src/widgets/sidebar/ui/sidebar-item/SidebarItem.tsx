@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo } from 'react';
-import { SidebarItem } from '../../model/types/sidebar.types';
+import type { SidebarItem } from '../../model/types/sidebar.types';
 
 function SidebarItem({ item }: { item: SidebarItem }) {
 	const pathname = usePathname();

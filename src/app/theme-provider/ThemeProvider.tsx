@@ -1,5 +1,6 @@
 'use client';
 
+import { COOKIES_THEME_KEY } from '@/src/shared/const/cookies';
 import {
 	ReactNode,
 	createContext,
@@ -25,13 +26,13 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
 	function setDarkTheme() {
 		document.documentElement.classList.add('dark');
-		localStorage.setItem('theme', JSON.stringify('dark'));
+		localStorage.setItem(COOKIES_THEME_KEY, JSON.stringify('dark'));
 		setTheme('dark');
 	}
 
 	function setLightTheme() {
 		document.documentElement.classList.remove('dark');
-		localStorage.setItem('theme', JSON.stringify('light'));
+		localStorage.setItem(COOKIES_THEME_KEY, JSON.stringify('light'));
 		setTheme('light');
 	}
 
@@ -45,7 +46,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
 	useEffect(() => {
 		if (
-			localStorage.getItem('theme') === 'dark' ||
+			localStorage.getItem(COOKIES_THEME_KEY) === 'dark' ||
 			window.matchMedia('(prefers-color-scheme: dark)').matches
 		) {
 			setDarkTheme();
