@@ -18,7 +18,7 @@ export async function query<R, P = void>(
 
 	const headers = {
 		'Content-Type': 'application/json',
-		...(token && { Authorization: `Bearer ${token}` }),
+		...(token && { Authorization: `Bearer ${token.value}` }),
 	};
 
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {

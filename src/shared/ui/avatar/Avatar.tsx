@@ -1,3 +1,5 @@
+'use client';
+
 import { useUserStore } from '@/src/entities/user';
 import Image from 'next/image';
 import { memo } from 'react';
@@ -5,9 +7,10 @@ import { memo } from 'react';
 interface AvatarProps {
 	width: number;
 	height: number;
+	className?: string;
 }
 
-function Avatar({ height, width }: AvatarProps) {
+function Avatar({ height, width, className }: AvatarProps) {
 	const userAvatarPath = useUserStore((state) => state.avatarPath);
 	const avatarPath = userAvatarPath || '/avatars/default-avatar.png';
 
@@ -17,6 +20,7 @@ function Avatar({ height, width }: AvatarProps) {
 			alt='Avatar'
 			width={width}
 			height={height}
+			className={className}
 		/>
 	);
 }
