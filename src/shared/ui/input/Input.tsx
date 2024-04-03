@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
-import { ChangeEvent, InputHTMLAttributes, memo } from 'react';
+import { ChangeEvent, InputHTMLAttributes, memo, useCallback } from 'react';
 
 type InputVariant = 'normal' | 'small' | 'clear';
 
@@ -9,8 +9,8 @@ interface InputProps
 	className?: string;
 	icon?: string;
 	variant?: InputVariant;
-	value: string;
-	onChange: (value: string) => void;
+	value?: string;
+	onChange?: (value: string) => void;
 }
 
 function Input({
@@ -21,9 +21,12 @@ function Input({
 	variant = 'normal',
 	...props
 }: InputProps) {
-	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		onChange?.(e.target.value);
-	};
+	const onChangeHandler = useCallback(
+		(e: ChangeEvent<HTMLInputElement>) => {
+			onChange?.(e.target.value);
+		},
+		[onChange]
+	);
 
 	return (
 		<div
@@ -37,7 +40,8 @@ function Input({
 			{icon && <Image src={icon} alt='Icon' />}
 			<input
 				value={value}
-				onChange={onChangeHandler}
+				// 👇 to avoid error 'client component'
+				onChange={onChange ? onChangeHandler : undefined}
 				className='w-full bg-transparent text-black outline-none placeholder:text-gray-600 focus:border-dark-gray-300 dark:text-gray-500 dark:focus:border-gray-400'
 				{...props}
 			/>

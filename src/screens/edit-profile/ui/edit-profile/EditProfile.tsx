@@ -1,0 +1,17 @@
+import { User } from '@/src/entities/user';
+import { EditForm } from '@/src/features/edit-profile';
+import { query } from '@/src/shared/api/queryClient/query';
+import { Page } from '@/src/widgets/page';
+import { memo } from 'react';
+
+async function EditProfile() {
+	const profile = await query<User>('/user/profile');
+
+	return (
+		<Page>
+			<EditForm profile={profile} />
+		</Page>
+	);
+}
+
+export default memo(EditProfile);

@@ -22,6 +22,7 @@ function Header() {
 					value={findValue}
 					onChange={setFindValue}
 					className='max-w-[250px]'
+					aria-label='Find'
 				/>
 
 				<AvatarDropdown />

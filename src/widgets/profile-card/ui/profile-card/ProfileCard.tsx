@@ -1,8 +1,8 @@
 import { User } from '@/src/entities/user';
+import { EditLink } from '@/src/features/edit-profile';
 import { query } from '@/src/shared/api/queryClient/query';
 import LocationIcon from '@/src/shared/assets/location.svg';
 import Avatar from '@/src/shared/ui/avatar/Avatar';
-import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
 import Image from 'next/image';
 import { memo } from 'react';
@@ -23,16 +23,14 @@ async function ProfileCard() {
 						{profile.name} {profile.lastname}
 					</h1>
 					{profile.city && (
-						<div>
+						<div className='flex items-center gap-x-2 text-gray-600'>
 							<Image src={LocationIcon} alt='City' />
-							<span>{profile.city}</span>
+							<span className='text-xs font-medium'>{profile.city}</span>
 						</div>
 					)}
 				</div>
 			</div>
-			<Button className='px-10 text-white dark:bg-dark-gray-300'>
-				Edit profile
-			</Button>
+			<EditLink />
 		</Card>
 	);
 }
