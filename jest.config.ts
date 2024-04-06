@@ -13,7 +13,7 @@ const createJestConfig = nextJest({
 const config: Config = {
 	clearMocks: true,
 	moduleNameMapper: {
-		'^@/(.*)$': '<rootDir>/(.*)$',
+		'^@/(.*)$': '<rootDir>/$1',
 	},
 	setupFilesAfterEnv: ['<rootDir>/config/jest/jest.setup.ts'],
 	coverageProvider: 'v8',

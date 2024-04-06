@@ -5,11 +5,11 @@ import Input from '@/src/shared/ui/input/Input';
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo } from 'react';
-import SubmitButton from './SubmitButton';
+import SubmitButton from '../submit-button/SubmitButton';
 
 function EditForm({ profile }: { profile: User }) {
 	return (
-		<div className='flex flex-col gap-y-3'>
+		<div className='flex flex-col gap-y-3' data-testid='edit-form'>
 			<Link
 				aria-label='Return back to profile'
 				className='flex items-center gap-x-1 self-start text-xs font-medium dark:text-gray-500'
