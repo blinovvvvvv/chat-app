@@ -11,7 +11,10 @@ async function ProfileCard() {
 	const profile = await query<User>('/user/profile');
 
 	return (
-		<Card className='flex items-end justify-between rounded border p-6 transition-colors dark:border-dark-gray-200 dark:bg-dark-gray-500'>
+		<Card
+			variant='no-indent'
+			className='flex items-end justify-between rounded border p-6 transition-colors'
+		>
 			<div className='flex items-end gap-x-5 '>
 				<Avatar
 					className='rounded-full border border-gray-400 dark:border-none'

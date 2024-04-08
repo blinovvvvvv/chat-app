@@ -51,9 +51,10 @@ function AvatarDropdown() {
 
 			{/** Panel */}
 			<Card
+				variant='no-indent'
 				data-testid='avatar-dropdown-panel'
 				className={clsx(
-					'absolute right-0 top-[calc(100%+10px)] flex w-[250px] flex-col gap-y-[10px] rounded border border-gray-400 bg-gray-100 p-5 transition-all dark:border-dark-gray-200 dark:bg-dark-gray-500',
+					'absolute right-0 top-[calc(100%+10px)] flex w-[250px] flex-col gap-y-[10px] rounded border p-5 transition-all',
 					{
 						['block opacity-100']: visible,
 						['invisible opacity-0']: !visible,

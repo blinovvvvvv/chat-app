@@ -18,6 +18,7 @@ function AuthCard() {
 
 	return (
 		<Card
+			variant='clear'
 			className='relative w-[450px] overflow-hidden rounded bg-gradient-to-tr from-[#191919] to-[#292929] px-12 py-12 mobile:max-w-[360px] mobile:px-8'
 			data-testid='auth-card'
 		>

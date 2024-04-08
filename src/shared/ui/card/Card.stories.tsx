@@ -13,3 +13,17 @@ export const Default: Story = {
 		children: 'Card',
 	},
 };
+
+export const Clear: Story = {
+	args: {
+		children: 'Card',
+		variant: 'clear',
+	},
+};
+
+export const NoIndent: Story = {
+	args: {
+		children: 'Card',
+		variant: 'no-indent',
+	},
+};
