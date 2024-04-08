@@ -1,7 +1,8 @@
-export interface User {
+import { IdTimestamps } from '@/src/shared/types/IdTimestamps';
+
+export interface User extends IdTimestamps {
 	email: string;
 	isAdmin: boolean;
-	id: string;
 	avatarPath: string;
 	city: string;
 	name: string;
