@@ -27,15 +27,18 @@ function Modal({ children, className, isOpen, onClose }: ModalProps) {
 					{
 						['pointer-events-auto opacity-100']: isOpen,
 						['opacity-0']: !isOpen,
-					},
-					className
+					}
 				)}
 			>
 				<Overlay onClick={close} />
 				<div
-					className={clsx('z-[100] opacity-100 transition-all', {
-						['-translate-y-14 opacity-0']: !isOpen,
-					})}
+					className={clsx(
+						'z-[100] opacity-100 transition-all',
+						{
+							['-translate-y-14 opacity-0']: !isOpen,
+						},
+						className
+					)}
 				>
 					{children}
 				</div>

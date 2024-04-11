@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ButtonHTMLAttributes, forwardRef, memo } from 'react';
 
-type ButtonVariant = 'default' | 'clear';
+type ButtonVariant = 'default' | 'clear' | 'outline';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: ButtonVariant;
@@ -17,6 +17,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
 			ref={ref}
 			className={clsx('font-medium', className, {
 				['rounded bg-blue py-2']: variant === 'default',
+				['rounded border px-4 py-1 transition-colors dark:border-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-600']:
+					variant === 'outline',
 			})}
 			{...props}
 		>

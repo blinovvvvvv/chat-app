@@ -4,13 +4,13 @@ import { ChangeEvent, InputHTMLAttributes, memo, useCallback } from 'react';
 
 type InputVariant = 'normal' | 'small' | 'clear';
 
-interface InputProps
+export interface InputProps
 	extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
 	className?: string;
 	icon?: string;
 	variant?: InputVariant;
 	value?: string;
-	onChange?: (value: string) => void;
+	onChange?: (value: any) => void;
 }
 
 function Input({
@@ -19,13 +19,16 @@ function Input({
 	value,
 	onChange,
 	variant = 'normal',
+	type,
 	...props
 }: InputProps) {
 	const onChangeHandler = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
-			onChange?.(e.target.value);
+			if (type === 'file' && e.target.files) {
+				onChange?.(e.target.files[0]);
+			} else onChange?.(e.target.value);
 		},
-		[onChange]
+		[onChange, type]
 	);
 
 	return (
@@ -39,6 +42,7 @@ function Input({
 		>
 			{icon && <Image src={icon} alt='Icon' />}
 			<input
+				type={type}
 				value={value}
 				// 👇 to avoid error 'client component'
 				onChange={onChange ? onChangeHandler : undefined}
