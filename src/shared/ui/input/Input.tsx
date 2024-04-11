@@ -1,6 +1,12 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
-import { ChangeEvent, InputHTMLAttributes, memo, useCallback } from 'react';
+import {
+	ChangeEvent,
+	InputHTMLAttributes,
+	forwardRef,
+	memo,
+	useCallback,
+} from 'react';
 
 type InputVariant = 'normal' | 'small' | 'clear';
 
@@ -13,15 +19,18 @@ export interface InputProps
 	onChange?: (value: any) => void;
 }
 
-function Input({
-	className,
-	icon,
-	value,
-	onChange,
-	variant = 'normal',
-	type,
-	...props
-}: InputProps) {
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+	{
+		className,
+		icon,
+		value,
+		onChange,
+		variant = 'normal',
+		type,
+		...props
+	}: InputProps,
+	ref
+) {
 	const onChangeHandler = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			if (type === 'file' && e.target.files) {
@@ -44,6 +53,7 @@ function Input({
 			<input
 				type={type}
 				value={value}
+				ref={ref}
 				// 👇 to avoid error 'client component'
 				onChange={onChange ? onChangeHandler : undefined}
 				className='w-full bg-transparent text-black outline-none placeholder:text-gray-600 focus:border-dark-gray-300 dark:text-gray-500 dark:focus:border-gray-400'
@@ -51,6 +61,8 @@ function Input({
 			/>
 		</div>
 	);
-}
+});
+
+Input.displayName = 'Input';
 
 export default memo(Input);

@@ -3,6 +3,9 @@ const nextConfig = {
 	optimizeFonts: true,
 	reactStrictMode: true,
 	cleanDistDir: true,
+	eslint: {
+		dirs: ['src', 'app'],
+	},
 	images: {
 		remotePatterns: [
 			{

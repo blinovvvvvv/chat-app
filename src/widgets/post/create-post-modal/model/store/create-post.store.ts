@@ -7,7 +7,7 @@ interface CreatePostStoreState {
 
 interface CreatePostStoreActions {
 	setTextValue: (textValue: string) => void;
-	setImage: (imagePath: Blob | MediaSource) => void;
+	setImage: (image?: Blob | MediaSource) => void;
 }
 
 export const useCreatePostStore = create<
@@ -15,6 +15,7 @@ export const useCreatePostStore = create<
 >((set) => ({
 	image: undefined,
 	textValue: '',
-	setImage: (image: Blob | MediaSource) => set({ image }),
+
+	setImage: (image?: Blob | MediaSource) => set({ image }),
 	setTextValue: (textValue: string) => set({ textValue }),
 }));

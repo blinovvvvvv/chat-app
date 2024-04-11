@@ -56,7 +56,7 @@ function AvatarDropdown() {
 				className={clsx(
 					'absolute right-0 top-[calc(100%+10px)] flex w-[250px] flex-col gap-y-[10px] rounded border p-5 transition-all',
 					{
-						['block opacity-100']: visible,
+						['opacity-100']: visible,
 						['invisible opacity-0']: !visible,
 					}
 				)}
