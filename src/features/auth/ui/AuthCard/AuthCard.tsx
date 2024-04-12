@@ -2,12 +2,11 @@
 
 import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
-import { memo } from 'react';
 import { useAuthCardStore } from '../../model/store/authCard.store';
 import LoginCard from '../LoginCard/LoginCard';
 import SignUpCard from '../SignUpCard/SignUpCard';
 
-function AuthCard() {
+export default function AuthCard() {
 	const tab = useAuthCardStore((state) => state.tab);
 
 	const email = useAuthCardStore((state) => state.email);
@@ -18,7 +17,7 @@ function AuthCard() {
 
 	return (
 		<Card
-			variant='clear'
+			variant='no-indent'
 			className='relative w-[450px] overflow-hidden rounded bg-gradient-to-tr from-[#191919] to-[#292929] px-12 py-12 mobile:max-w-[360px] mobile:px-8'
 			data-testid='auth-card'
 		>
@@ -49,5 +48,3 @@ function AuthCard() {
 		</Card>
 	);
 }
-
-export default memo(AuthCard);

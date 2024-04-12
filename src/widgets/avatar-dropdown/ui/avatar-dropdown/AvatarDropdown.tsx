@@ -1,7 +1,8 @@
 'use client';
 
 import { logout } from '@/src/features/auth';
-import { ToggleTheme } from '@/src/features/toggle-theme';
+
+import { ToggleTheme } from '@/src/features/theme/toggle-theme';
 import arrowIcon from '@/src/shared/assets/arrow.svg';
 import { useOutside } from '@/src/shared/lib/hooks/use-outside/useOutside';
 import Avatar from '@/src/shared/ui/avatar/Avatar';

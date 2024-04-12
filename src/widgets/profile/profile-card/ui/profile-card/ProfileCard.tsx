@@ -1,13 +1,12 @@
 import { User } from '@/src/entities/user';
-import { EditLink } from '@/src/features/edit-profile';
+import { EditLink } from '@/src/features/profile/edit-profile';
 import { query } from '@/src/shared/api/queryClient/query';
 import LocationIcon from '@/src/shared/assets/location.svg';
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Card from '@/src/shared/ui/card/Card';
 import Image from 'next/image';
-import { memo } from 'react';
 
-async function ProfileCard() {
+export default async function ProfileCard() {
 	const profile = await query<User>('/user/profile');
 
 	return (
@@ -37,5 +36,3 @@ async function ProfileCard() {
 		</Card>
 	);
 }
-
-export default memo(ProfileCard);

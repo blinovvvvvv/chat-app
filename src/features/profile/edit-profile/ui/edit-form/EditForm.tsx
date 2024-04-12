@@ -4,10 +4,9 @@ import arrowIcon from '@/src/shared/assets/arrow.svg';
 import Input from '@/src/shared/ui/input/Input';
 import Image from 'next/image';
 import Link from 'next/link';
-import { memo } from 'react';
 import SubmitButton from '../submit-button/SubmitButton';
 
-function EditForm({ profile }: { profile: User }) {
+export default function EditForm({ profile }: { profile: User }) {
 	return (
 		<div className='flex flex-col gap-y-3' data-testid='edit-form'>
 			<Link
@@ -46,5 +45,3 @@ function EditForm({ profile }: { profile: User }) {
 		</div>
 	);
 }
-
-export default memo(EditForm);

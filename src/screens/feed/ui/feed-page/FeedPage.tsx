@@ -1,4 +1,4 @@
-import { CreatePostBanner } from '@/src/features/create-post';
+import { CreatePostBanner } from '@/src/features/post/create-post';
 import { Page } from '@/src/widgets/page';
 import { memo } from 'react';
 

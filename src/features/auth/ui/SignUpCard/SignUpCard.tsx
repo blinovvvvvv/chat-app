@@ -1,5 +1,3 @@
-'use client';
-
 import LockIcon from '@/src/shared/assets/lock.svg';
 import Logo from '@/src/shared/assets/logo.svg';
 import MailIcon from '@/src/shared/assets/mail.svg';
@@ -7,7 +5,7 @@ import Button from '@/src/shared/ui/button/Button';
 import Input from '@/src/shared/ui/input/Input';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { signup } from '../../model/actions/signup.action';
 import { useAuthCardStore } from '../../model/store/authCard.store';
 
@@ -19,7 +17,7 @@ interface SignUpCardProps {
 	onChangePassword: (password: string) => void;
 }
 
-function SignUpCard({
+export default function SignUpCard({
 	className,
 	email,
 	password,
@@ -116,5 +114,3 @@ function SignUpCard({
 		</div>
 	);
 }
-
-export default memo(SignUpCard);

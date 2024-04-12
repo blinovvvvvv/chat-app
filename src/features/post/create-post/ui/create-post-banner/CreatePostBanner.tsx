@@ -3,10 +3,10 @@
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
-import { memo, useCallback, useState } from 'react';
-import CreatePostModal from '../../../../widgets/post/create-post-modal/ui/create-post-modal/CreatePostModal';
+import { CreatePostModal } from '@/src/widgets/post/create-post-modal';
+import { useCallback, useState } from 'react';
 
-function CreatePostForm() {
+export default function CreatePostBanner() {
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	const handleClick = useCallback(() => {
@@ -32,5 +32,3 @@ function CreatePostForm() {
 		</>
 	);
 }
-
-export default memo(CreatePostForm);
