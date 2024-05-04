@@ -2,6 +2,10 @@ import { cookies } from 'next/headers';
 import { COOKIES_ACCESS_TOKEN_KEY } from '../../const/cookies';
 import { HttpMethod } from './http.types';
 
+interface QueryOptions extends RequestInit {
+	file?: boolean;
+}
+
 /**
  R - response generic
  P - payload generic
@@ -10,7 +14,7 @@ export async function query<R, P = void>(
 	url: string = '/',
 	method: HttpMethod = 'GET',
 	body?: P,
-	options?: RequestInit & { file: boolean }
+	options?: QueryOptions
 ) {
 	// get token from cookies
 	const cookieStore = cookies();
