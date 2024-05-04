@@ -7,9 +7,9 @@ import Card from '@/src/shared/ui/card/Card';
 import TextArea from '@/src/shared/ui/textarea/TextArea';
 import dynamic from 'next/dynamic';
 import { MutableRefObject, useCallback, useRef } from 'react';
+import { createPost } from '../../model/actions/create-post.action';
 import { useCreatePostStore } from '../../model/store/create-post.store';
 
-// dynamic import to avoid "document is undefined" error
 const DynamicModal = dynamic(() => import('@/src/shared/ui/modal/Modal'), {
 	ssr: false,
 });
@@ -46,12 +46,20 @@ export default function CreatePostModal({
 	);
 
 	const onImageDelete = useCallback(() => {
-		/** remove image from input */
 		imageInputRef.current.value = '';
-
-		/** remove image from state */
 		setImage(undefined);
 	}, [setImage]);
+
+	const createPostFormAction = useCallback(
+		(formData: FormData) => {
+			createPost(formData).then(() => {
+				setTextValue('');
+				onImageDelete();
+				handleClick?.();
+			});
+		},
+		[handleClick, onImageDelete, setTextValue]
+	);
 
 	return (
 		<DynamicModal
@@ -59,12 +67,12 @@ export default function CreatePostModal({
 			isOpen={isOpenModal}
 			onClose={handleClick}
 		>
-			<form>
+			<form action={createPostFormAction}>
 				<Card variant='no-indent' className='flex flex-col gap-y-4 px-8 py-6'>
 					<TextArea
 						value={textValue}
 						onChange={onTextAreaChange}
-						className='w-full border-none text-xs font-medium text-gray-500'
+						className='w-full border-none bg-transparent text-xs font-medium text-gray-500'
 						placeholder="What's new with you?"
 						name='text'
 						rows={14}
@@ -83,11 +91,13 @@ export default function CreatePostModal({
 							className='self-start'
 							onChange={onImageChange}
 							multiple={false}
+							name='image'
 							/** passing ref to reset input value if need */
 							ref={imageInputRef}
 						/>
 					</div>
 					<Button
+						disabled={!textValue}
 						className='mt-4 self-end text-xs'
 						type='submit'
 						variant='outline'

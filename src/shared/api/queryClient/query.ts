@@ -10,20 +10,22 @@ export async function query<R, P = void>(
 	url: string = '/',
 	method: HttpMethod = 'GET',
 	body?: P,
-	options?: RequestInit
+	options?: RequestInit & { file: boolean }
 ) {
 	// get token from cookies
 	const cookieStore = cookies();
 	const token = cookieStore.get(COOKIES_ACCESS_TOKEN_KEY);
 
 	const headers = {
-		'Content-Type': 'application/json',
+		...(!options?.file && { 'Content-Type': 'application/json' }),
 		...(token && { Authorization: `Bearer ${token.value}` }),
 	};
 
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
 		method,
-		body: JSON.stringify(body),
+		//FIXME:
+		//@ts-ignore
+		body: options?.file ? body : JSON.stringify(body),
 		headers,
 		...options,
 	});
