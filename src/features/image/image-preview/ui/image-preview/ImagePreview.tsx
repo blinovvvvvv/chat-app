@@ -35,6 +35,7 @@ export default function ImagePreview({
 		>
 			<Button
 				variant='clear'
+				type='button'
 				className={clsx(
 					'absolute right-0 top-0 z-[10] rounded bg-gray-200 p-1.5 transition-all',
 					{

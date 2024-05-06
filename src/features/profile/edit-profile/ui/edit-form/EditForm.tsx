@@ -1,5 +1,4 @@
-import { User } from '@/src/entities/user';
-import { updateProfile } from '@/src/entities/user/model/actions/update-profile.action';
+import { User, updateProfile } from '@/src/entities/user';
 import arrowIcon from '@/src/shared/assets/arrow.svg';
 import Input from '@/src/shared/ui/input/Input';
 import Image from 'next/image';
@@ -12,7 +11,7 @@ export default function EditForm({ profile }: { profile: User }) {
 			<Link
 				aria-label='Return back to profile'
 				className='flex items-center gap-x-1 self-start text-xs font-medium dark:text-gray-500'
-				href={{ pathname: '/profile' }}
+				href='/profile'
 			>
 				<Image className='rotate-90' src={arrowIcon} alt='Arrow' />
 				<span>Back</span>

@@ -11,5 +11,4 @@ export const useUserStore = create<User>(() => ({
 	lastname: '',
 }));
 
-// 👇 hookless approach to use in non-react-components files
 export const initializeUserStore = (data: User) => useUserStore.setState(data);

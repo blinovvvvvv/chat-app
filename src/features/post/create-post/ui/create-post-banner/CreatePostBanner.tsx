@@ -3,7 +3,7 @@
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
-import { CreatePostModal } from '@/src/widgets/post/create-post-modal';
+import { CreatePostModal } from '@/src/widgets/create-post';
 import { useCallback, useState } from 'react';
 
 export default function CreatePostBanner() {

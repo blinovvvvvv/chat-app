@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeContext } from '@/src/app/theme-provider/ThemeProvider';
+import { ThemeContext } from '@/src/app/theme-provider';
 import Button from '@/src/shared/ui/button/Button';
 import clsx from 'clsx';
 import { memo, useCallback, useContext } from 'react';

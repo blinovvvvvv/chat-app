@@ -1,5 +1,5 @@
-import { AuthCard } from '@/src/features/auth';
 import { COOKIES_ACCESS_TOKEN_KEY } from '@/src/shared/const/cookies';
+import { AuthCard } from '@/src/widgets/auth-card';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 

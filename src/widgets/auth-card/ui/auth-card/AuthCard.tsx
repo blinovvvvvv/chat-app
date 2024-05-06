@@ -1,10 +1,8 @@
 'use client';
 
+import { LoginCard, SignUpCard, useAuthCardStore } from '@/src/features/auth';
 import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
-import { useAuthCardStore } from '../../model/store/authCard.store';
-import LoginCard from '../LoginCard/LoginCard';
-import SignUpCard from '../SignUpCard/SignUpCard';
 
 export default function AuthCard() {
 	const tab = useAuthCardStore((state) => state.tab);
