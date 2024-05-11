@@ -6,23 +6,31 @@ interface QueryOptions extends RequestInit {
 	file?: boolean;
 }
 
+interface QueryProps<P> {
+	url: string;
+	method?: HttpMethod;
+	body?: P;
+	options?: QueryOptions;
+	auth?: boolean;
+}
+
 /**
  R - response generic
  P - payload generic
 */
-export async function query<R, P = void>(
-	url: string = '/',
-	method: HttpMethod = 'GET',
-	body?: P,
-	options?: QueryOptions
-) {
+export async function query<R, P = void>({
+	url = '/',
+	method = 'GET',
+	body,
+	options,
+	auth,
+}: QueryProps<P>) {
 	// get token from cookies
-	const cookieStore = cookies();
-	const token = cookieStore.get(COOKIES_ACCESS_TOKEN_KEY);
+	const token = cookies().get(COOKIES_ACCESS_TOKEN_KEY);
 
 	const headers = {
 		...(!options?.file && { 'Content-Type': 'application/json' }),
-		...(token && { Authorization: `Bearer ${token.value}` }),
+		...(auth && token && { Authorization: `Bearer ${token.value}` }),
 	};
 
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
@@ -35,7 +43,6 @@ export async function query<R, P = void>(
 	});
 
 	if (!res.ok) {
-		console.log(await res.text());
 		return null as R;
 	}
 

@@ -21,24 +21,51 @@ export default function EditForm({ profile }: { profile: User }) {
 				action={updateProfile}
 				className='flex max-w-[400px] flex-col gap-y-3'
 			>
-				<Input
-					name='name'
-					defaultValue={profile.name}
-					placeholder='Your first name'
-					aria-label='Your first name'
-				/>
-				<Input
-					name='lastname'
-					defaultValue={profile.lastname}
-					placeholder='Your last name'
-					aria-label='Your last name'
-				/>
-				<Input
-					name='city'
-					defaultValue={profile.city}
-					placeholder='Your city'
-					aria-label='Your city'
-				/>
+				<div>
+					<label
+						htmlFor='name'
+						className='mb-1 block text-xs font-medium text-gray-400'
+					>
+						Name
+					</label>
+					<Input
+						id='name'
+						name='name'
+						defaultValue={profile.name}
+						placeholder='Your first name'
+						aria-label='Your first name'
+					/>
+				</div>
+				<div>
+					<label
+						htmlFor='lastname'
+						className='mb-1 block text-xs font-medium text-gray-400'
+					>
+						Lastname
+					</label>
+					<Input
+						id='lastname'
+						name='lastname'
+						defaultValue={profile.lastname}
+						placeholder='Your last name'
+						aria-label='Your last name'
+					/>
+				</div>
+				<div>
+					<label
+						htmlFor='city'
+						className='mb-1 block text-xs font-medium text-gray-400'
+					>
+						City
+					</label>
+					<Input
+						id='city'
+						name='city'
+						defaultValue={profile.city}
+						placeholder='Your city'
+						aria-label='Your city'
+					/>
+				</div>
 				<SubmitButton />
 			</form>
 		</div>

@@ -5,7 +5,7 @@ import { Page } from '@/src/widgets/page';
 import { memo } from 'react';
 
 async function EditProfile() {
-	const profile = await query<User>('/user/profile');
+	const profile = await query<User>({ url: '/user/profile', auth: true });
 
 	return (
 		<Page>

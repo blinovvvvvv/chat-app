@@ -7,7 +7,7 @@ import Card from '@/src/shared/ui/card/Card';
 import Image from 'next/image';
 
 export default async function ProfileCard() {
-	const profile = await query<User>('/user/profile');
+	const profile = await query<User>({ url: '/user/profile', auth: true });
 
 	return (
 		<Card

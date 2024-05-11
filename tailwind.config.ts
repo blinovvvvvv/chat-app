@@ -8,11 +8,6 @@ const config: Config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
-		screens: {
-			mobile: { max: '480px' },
-			tablet: '640px',
-			desktop: '1280px',
-		},
 		fontSize: {
 			xs: '0.875rem',
 			sm: '1rem',

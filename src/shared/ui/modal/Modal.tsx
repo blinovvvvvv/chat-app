@@ -29,6 +29,7 @@ function Modal({ children, className, isOpen, onClose }: ModalProps) {
 						['opacity-0']: !isOpen,
 					}
 				)}
+				aria-disabled={!isOpen}
 			>
 				<Overlay onClick={close} />
 				<div

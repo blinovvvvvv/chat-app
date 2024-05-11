@@ -17,20 +17,24 @@ export async function createPost(formData: FormData) {
 		let imagePath: string = '';
 
 		if (isImageProvided) {
-			const { url } = await query<FileUploadResponse, FormData>(
-				'/media',
-				'POST',
-				formData,
-				{
+			const { url } = await query<FileUploadResponse, FormData>({
+				url: '/media',
+				method: 'POST',
+				body: formData,
+				options: {
 					file: true,
-				}
-			);
+				},
+			});
 			if (url) imagePath = url;
 		}
 
-		await query('/post/create', 'POST', {
-			text: rawFormData.text,
-			...(isImageProvided && { imagePath }),
+		await query({
+			url: '/post/create',
+			method: 'POST',
+			body: {
+				text: rawFormData.text,
+				...(isImageProvided && { imagePath }),
+			},
 		});
 
 		revalidatePath('/feed');

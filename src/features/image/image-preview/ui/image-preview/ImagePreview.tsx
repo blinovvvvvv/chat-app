@@ -1,5 +1,4 @@
 import CrossIcon from '@/src/shared/assets/cross.svg';
-import { useHover } from '@/src/shared/lib/hooks/use-hover/useHover';
 import Button from '@/src/shared/ui/button/Button';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -16,8 +15,6 @@ export default function ImagePreview({
 	onDelete,
 	className,
 }: ImagePreviewProps) {
-	const { isHover, onMouseEnter, onMouseLeave } = useHover();
-
 	const onClickHandler = useCallback(
 		(e: MouseEvent<HTMLButtonElement>) => {
 			/** prevent form submit */
@@ -28,21 +25,13 @@ export default function ImagePreview({
 	);
 
 	return (
-		<div
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
-			className={clsx('relative cursor-pointer transition-all', className)}
-		>
+		<div className={clsx('relative cursor-pointer transition-all', className)}>
 			<Button
 				variant='clear'
 				type='button'
-				className={clsx(
-					'absolute right-0 top-0 z-[10] rounded bg-gray-200 p-1.5 transition-all',
-					{
-						['invisible opacity-0']: !isHover,
-						['opacity-100']: isHover,
-					}
-				)}
+				className={
+					'absolute right-0 top-0 z-[10] rounded bg-gray-200 p-1.5 transition-all'
+				}
 				onClick={onClickHandler}
 			>
 				<Image src={CrossIcon} alt='Delete' />

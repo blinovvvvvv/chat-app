@@ -5,6 +5,7 @@ import { ImageUpload } from '@/src/features/image/image-upload';
 import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
 import TextArea from '@/src/shared/ui/textarea/TextArea';
+import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import { MutableRefObject, useCallback, useRef } from 'react';
 import { createPost } from '../../model/actions/create-post.action';
@@ -87,18 +88,27 @@ export default function CreatePostModal({
 								onDelete={onImageDelete}
 							/>
 						)}
+						<label
+							htmlFor='image-upload'
+							className='text-xs font-medium text-gray-500'
+						>
+							Add a picture
+						</label>
 						<ImageUpload
 							className='self-start'
 							onChange={onImageChange}
 							multiple={false}
 							name='image'
+							id='image-upload'
 							/** passing ref to reset input value if need */
 							ref={imageInputRef}
 						/>
 					</div>
 					<Button
 						disabled={!textValue}
-						className='mt-4 self-end text-xs'
+						className={clsx('self-end text-xs', {
+							['cursor-not-allowed border-gray-600 text-gray-600']: !textValue,
+						})}
 						type='submit'
 						variant='outline'
 						aria-label='Click to post'

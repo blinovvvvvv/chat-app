@@ -56,7 +56,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 				ref={ref}
 				// 👇 to avoid error 'client component'
 				onChange={onChange ? onChangeHandler : undefined}
-				className='w-full bg-transparent text-black outline-none placeholder:text-gray-600 focus:border-dark-gray-300 dark:text-gray-500 dark:focus:border-gray-400'
+				className={clsx(
+					'w-full bg-transparent text-black outline-none placeholder:text-gray-600 focus:border-dark-gray-300 dark:text-gray-500 dark:focus:border-gray-400',
+					'file:hidden file:border-none file:bg-transparent file:p-0 file:font-medium file:text-gray-500 file:outline-none'
+				)}
 				{...props}
 			/>
 		</div>

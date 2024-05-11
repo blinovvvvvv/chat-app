@@ -8,9 +8,9 @@ export async function updateProfile(formData: FormData) {
 	const lastname = formData.get('lastname') as string;
 	const city = formData.get('city') as string;
 
-	await query<User, Pick<User, 'name' | 'lastname' | 'city'>>(
-		'/user/profile',
-		'PUT',
-		{ name, lastname, city }
-	);
+	await query<User, Pick<User, 'name' | 'lastname' | 'city'>>({
+		url: '/user/profile',
+		method: 'PUT',
+		body: { name, lastname, city },
+	});
 }
