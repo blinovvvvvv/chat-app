@@ -8,3 +8,9 @@ export interface Post extends IdTimestamps {
 	comments: [];
 	reactions: [];
 }
+
+export interface PostPaginationResponse {
+	data: Post[];
+	currentPage: number;
+	lastPage: number;
+}

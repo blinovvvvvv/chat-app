@@ -3,8 +3,12 @@
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
-import { CreatePostModal } from '@/src/widgets/create-post';
+import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
+
+const CreatePostModal = dynamic(
+	() => import('../create-post-modal/CreatePostModal')
+);
 
 export default function CreatePostBanner() {
 	const [isOpenModal, setIsOpenModal] = useState(false);

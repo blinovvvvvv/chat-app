@@ -24,6 +24,7 @@ export async function createPost(formData: FormData) {
 				options: {
 					file: true,
 				},
+				auth: true,
 			});
 			if (url) imagePath = url;
 		}
@@ -35,6 +36,7 @@ export async function createPost(formData: FormData) {
 				text: rawFormData.text,
 				...(isImageProvided && { imagePath }),
 			},
+			auth: true,
 		});
 
 		revalidatePath('/feed');

@@ -26,7 +26,7 @@ export async function query<R, P = void>({
 	auth,
 }: QueryProps<P>) {
 	// get token from cookies
-	const token = cookies().get(COOKIES_ACCESS_TOKEN_KEY);
+	const token = auth ? cookies().get(COOKIES_ACCESS_TOKEN_KEY) : '';
 
 	const headers = {
 		...(!options?.file && { 'Content-Type': 'application/json' }),

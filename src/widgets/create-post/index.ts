@@ -1,1 +1,1 @@
-export { default as CreatePostModal } from './ui/create-post-modal/CreatePostModal';
+export { default as CreatePostBanner } from './ui/create-post-banner/CreatePostBanner';
