@@ -10,25 +10,20 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function logout() {
-	try {
-		cookies().delete(COOKIES_ACCESS_TOKEN_KEY);
-		cookies().delete(COOKIES_REFRESH_TOKEN_KEY);
-		cookies().delete(COOKIES_USER_KEY);
+	cookies().delete(COOKIES_ACCESS_TOKEN_KEY);
+	cookies().delete(COOKIES_REFRESH_TOKEN_KEY);
+	cookies().delete(COOKIES_USER_KEY);
 
-		// 👇 remove user from store
-		initializeUserStore({
-			email: '',
-			name: '',
-			lastname: '',
-			avatarPath: '',
-			city: '',
-			id: '',
-			isAdmin: false,
-		});
-	} catch (error) {
-		console.error(error);
-		throw new Error('Something went wrong');
-	}
+	// 👇 remove user from store
+	initializeUserStore({
+		email: '',
+		name: '',
+		lastname: '',
+		avatarPath: '',
+		city: '',
+		id: '',
+		isAdmin: false,
+	});
 
 	redirect('/');
 }

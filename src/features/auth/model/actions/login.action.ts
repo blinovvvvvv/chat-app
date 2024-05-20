@@ -21,6 +21,5 @@ export async function login(payload: AuthPayload) {
 		}
 	} catch (error) {
 		console.error(error);
-		throw new Error('Something went wrong');
 	}
 }

@@ -1,6 +1,7 @@
 'use server';
 
 import { query } from '@/src/shared/api/queryClient/query';
+import { redirect } from 'next/navigation';
 import saveUser from '../../lib/helpers/saveUser';
 import { AuthResponse } from '../types/auth.types';
 
@@ -21,6 +22,6 @@ export async function getNewToken(payload: { refreshToken: string }) {
 		}
 	} catch (error) {
 		console.error(error);
-		throw new Error('Something went wrong');
+		redirect('/');
 	}
 }
