@@ -3,7 +3,7 @@ import { PostPaginationResponse } from '../../model/types/post.types';
 
 export const fetchInitialPosts = async (): Promise<PostPaginationResponse> => {
 	try {
-		return await query({
+		return query({
 			url: '/post',
 			auth: true,
 		});

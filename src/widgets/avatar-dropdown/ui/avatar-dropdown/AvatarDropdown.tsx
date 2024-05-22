@@ -2,10 +2,10 @@
 
 import { logout } from '@/src/features/auth';
 
+import { UserAvatar } from '@/src/entities/user';
 import { ToggleTheme } from '@/src/features/theme/toggle-theme';
 import arrowIcon from '@/src/shared/assets/arrow.svg';
 import { useOutside } from '@/src/shared/lib/hooks/use-outside/useOutside';
-import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
@@ -37,7 +37,7 @@ function AvatarDropdown() {
 				onClick={onClickHandler}
 				data-testid='avatar-dropdown-button'
 			>
-				<Avatar width={34} height={34} />
+				<UserAvatar width={34} height={34} />
 
 				{/** arrow */}
 				<Image

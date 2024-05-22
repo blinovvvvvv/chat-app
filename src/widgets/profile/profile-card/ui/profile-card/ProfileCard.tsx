@@ -1,8 +1,7 @@
-import { User } from '@/src/entities/user';
+import { User, UserAvatar } from '@/src/entities/user';
 import { EditLink } from '@/src/features/profile/edit-profile';
 import { query } from '@/src/shared/api/queryClient/query';
 import LocationIcon from '@/src/shared/assets/location.svg';
-import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Card from '@/src/shared/ui/card/Card';
 import Image from 'next/image';
 
@@ -15,7 +14,7 @@ export default async function ProfileCard() {
 			className='flex items-end justify-between rounded border p-6 transition-colors'
 		>
 			<div className='flex items-end gap-x-5 '>
-				<Avatar
+				<UserAvatar
 					className='rounded-full border border-gray-400 dark:border-none'
 					width={100}
 					height={100}

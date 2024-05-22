@@ -1,5 +1,4 @@
-import { cookies } from 'next/headers';
-import { COOKIES_ACCESS_TOKEN_KEY } from '../../const/cookies';
+import { getToken } from './get-token';
 import { HttpMethod } from './http.types';
 
 interface QueryOptions extends RequestInit {
@@ -12,6 +11,8 @@ interface QueryProps<P> {
 	body?: P;
 	options?: QueryOptions;
 	auth?: boolean;
+	/** @prop Set true to fetch data from client-side */
+	client?: boolean;
 }
 
 /**
@@ -24,13 +25,14 @@ export async function query<R, P = void>({
 	body,
 	options,
 	auth,
-}: QueryProps<P>) {
+	client,
+}: QueryProps<P>): Promise<R> {
 	// get token from cookies
-	const token = auth ? cookies().get(COOKIES_ACCESS_TOKEN_KEY) : '';
+	const token = auth ? await getToken(client) : '';
 
 	const headers = {
 		...(!options?.file && { 'Content-Type': 'application/json' }),
-		...(auth && token && { Authorization: `Bearer ${token.value}` }),
+		...(auth && token && { Authorization: `Bearer ${token}` }),
 	};
 
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
@@ -43,10 +45,10 @@ export async function query<R, P = void>({
 	});
 
 	if (!res.ok) {
-		return null as R;
+		return undefined as R;
 	}
 
 	const data = await res.json();
 
-	return data as R;
+	return data;
 }

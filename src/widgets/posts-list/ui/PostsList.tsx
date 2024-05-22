@@ -1,19 +1,18 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { Post, PostCard, fetchNewPosts } from '@/src/entities/post';
+import { memo, useCallback, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
-import { fetchNewPosts } from '../../api/fetch-posts/fetch-new-posts';
-import { Post } from '../../model/types/post.types';
 
 interface PostsListProps {
 	initialPosts: Post[];
 	page: number;
 }
 
-export default function PostsList({ initialPosts, page }: PostsListProps) {
-	const [posts, setPosts] = useState<Post[]>(initialPosts);
+function PostsList({ initialPosts, page }: PostsListProps) {
 	// first page of posts have prefetched
 	const [currentPage, setCurrentPage] = useState<number>(page + 1);
+	const [posts, setPosts] = useState<Post[]>(initialPosts);
 
 	const setNewPosts = useCallback(async (page: number) => {
 		await fetchNewPosts(page).then((posts) => {
@@ -24,12 +23,14 @@ export default function PostsList({ initialPosts, page }: PostsListProps) {
 
 	return (
 		<Virtuoso
+			className='mt-5'
 			useWindowScroll
-			className='h-full'
 			totalCount={posts.length}
 			endReached={setNewPosts.bind(null, currentPage)}
 			data={posts}
-			itemContent={(index, post) => <div className='py-24'>{post.text}</div>}
+			itemContent={(index, post) => <PostCard className='mb-5' id={post.id} />}
 		/>
 	);
 }
+
+export default memo(PostsList);

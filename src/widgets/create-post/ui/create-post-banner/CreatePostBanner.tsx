@@ -1,6 +1,6 @@
 'use client';
 
-import Avatar from '@/src/shared/ui/avatar/Avatar';
+import { UserAvatar } from '@/src/entities/user';
 import Button from '@/src/shared/ui/button/Button';
 import Card from '@/src/shared/ui/card/Card';
 import dynamic from 'next/dynamic';
@@ -26,7 +26,7 @@ export default function CreatePostBanner() {
 				onClick={handleClick}
 			>
 				<Card className='flex w-full items-center gap-x-3 transition-colors'>
-					<Avatar width={25} height={25} />
+					<UserAvatar width={25} height={25} />
 					<span className='text-xs font-medium transition-colors dark:text-gray-600'>
 						What&apos;s new with you?
 					</span>

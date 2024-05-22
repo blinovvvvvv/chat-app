@@ -1,7 +1,6 @@
 'use client';
 
-import { useUserStore } from '@/src/entities/user';
-import Avatar from '@/src/shared/ui/avatar/Avatar';
+import { UserAvatar, useUserStore } from '@/src/entities/user';
 import { memo } from 'react';
 
 function ProfileHeading({
@@ -18,7 +17,7 @@ function ProfileHeading({
 			data-testid={dataTestId}
 			className='flex select-none items-center gap-x-[10px]'
 		>
-			<Avatar width={30} height={30} />
+			<UserAvatar width={30} height={30} />
 			<div className='text-xs font-medium'>
 				<div className='truncate'>
 					{userName} {userLastname}
