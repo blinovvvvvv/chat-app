@@ -3,6 +3,8 @@
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
 import { ReactElement, memo, useEffect, useState } from 'react';
 import { fetchPostById } from '../../api/fetch-post-by-id/fetch-post-by-id';
@@ -20,6 +22,8 @@ interface PostCardProps {
 	/** slot for add comment form */
 	addCommentForm?: ReactElement;
 }
+
+dayjs.extend(relativeTime);
 
 function PostCard({
 	id,
@@ -49,9 +53,17 @@ function PostCard({
 				<span className='font-medium'>
 					{post?.User.name} {post?.User.lastname}
 				</span>
-				<span>date</span>
+				<span className='text-xs text-gray-600'>
+					{dayjs(post?.createdAt).fromNow()}
+				</span>
 			</div>
-			<p className='my-2.5 text-xs'>{post?.text}</p>
+			<div className='my-2.5'>
+				{post?.text ? (
+					<p className='text-xs'>{post?.text}</p>
+				) : (
+					<p className='text-xs text-gray-600'>Empty text</p>
+				)}
+			</div>
 			{post?.imagePath && (
 				<div className='relative h-[260px] w-full'>
 					<Image
