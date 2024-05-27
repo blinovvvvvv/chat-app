@@ -17,6 +17,7 @@ const config: Config = {
 		borderRadius: {
 			s: '5px',
 			DEFAULT: '10px',
+			m: '15px',
 			full: '9999px',
 		},
 		extend: {

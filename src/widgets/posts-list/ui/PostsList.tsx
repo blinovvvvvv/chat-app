@@ -1,5 +1,6 @@
 'use client';
 
+import { CommentCountButton } from '@/src/entities/comment';
 import { Post, PostCard, fetchNewPosts } from '@/src/entities/post';
 import { memo, useCallback, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
@@ -28,7 +29,13 @@ function PostsList({ initialPosts, page }: PostsListProps) {
 			totalCount={posts.length}
 			endReached={setNewPosts.bind(null, currentPage)}
 			data={posts}
-			itemContent={(index, post) => <PostCard className='mb-5' id={post.id} />}
+			itemContent={(index, post) => (
+				<PostCard
+					className='mb-5'
+					id={post.id}
+					commentsButton={<CommentCountButton count={post.comments.length} />}
+				/>
+			)}
 		/>
 	);
 }
