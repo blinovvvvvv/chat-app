@@ -1,5 +1,3 @@
-'use client';
-
 import { query } from '@/src/shared/api/queryClient/query';
 import { cache } from 'react';
 import { Post } from '../../model/types/post.types';
