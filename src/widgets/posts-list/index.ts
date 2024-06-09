@@ -1,1 +1,1 @@
-export { default as PostsList } from './ui/PostsList';
+export { default as PostsList } from './ui/posts-list/PostsList';

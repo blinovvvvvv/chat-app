@@ -22,6 +22,8 @@ const config: Config = {
 		},
 		extend: {
 			colors: {
+				orange: '#AF9E00',
+				'dark-orange': '#393227',
 				blue: '#2F7ABF',
 				'dark-blue': '#276298',
 				red: '#D82828',
@@ -43,6 +45,19 @@ const config: Config = {
 					600: '#121212',
 					700: '#0F0F0F',
 				},
+			},
+			keyframes: {
+				scaleIn: {
+					'0%': {
+						transform: 'scale(1.5)',
+					},
+					'100%': {
+						transform: 'scale(1)',
+					},
+				},
+			},
+			animation: {
+				'scale-in': 'scaleIn 1s ease-in',
 			},
 		},
 	},

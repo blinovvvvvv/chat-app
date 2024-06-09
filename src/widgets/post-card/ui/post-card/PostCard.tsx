@@ -1,5 +1,9 @@
 'use client';
 
+import { CommentCountButton } from '@/src/entities/comment';
+import { Post } from '@/src/entities/post';
+import { fetchPostById } from '@/src/entities/post/api/fetch-post-by-id/fetch-post-by-id';
+import { AddReactionButton } from '@/src/features/reaction/add-reaction';
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Card from '@/src/shared/ui/card/Card';
 import clsx from 'clsx';
@@ -7,8 +11,6 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
 import { ReactElement, memo, useEffect, useState } from 'react';
-import { fetchPostById } from '../../api/fetch-post-by-id/fetch-post-by-id';
-import { Post } from '../../model/types/post.types';
 
 interface PostCardProps {
 	id: string;
@@ -28,7 +30,6 @@ dayjs.extend(relativeTime);
 function PostCard({
 	id,
 	className,
-	reaction,
 	commentsList,
 	commentsButton,
 	addCommentForm,
@@ -36,15 +37,15 @@ function PostCard({
 	const [post, setPost] = useState<Post>();
 
 	const getPostData = async () => {
-		await fetchPostById(id)
-			.then((data) => setPost(data))
-			.catch((err) => console.error(err));
+		await fetchPostById(id).then((data) => setPost(data));
 	};
 
 	useEffect(() => {
 		getPostData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	if (!post) return null;
 
 	return (
 		<Card variant='no-indent' className={clsx('rounded p-5', className)}>
@@ -76,8 +77,8 @@ function PostCard({
 				</div>
 			)}
 			<div className='flex items-center gap-x-2.5'>
-				{reaction}
-				{commentsButton}
+				<AddReactionButton revalidate={getPostData} post={post} />
+				<CommentCountButton count={post?.comments.length} />
 			</div>
 			{commentsList}
 			{addCommentForm}

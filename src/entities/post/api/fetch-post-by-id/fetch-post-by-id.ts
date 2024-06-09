@@ -7,11 +7,6 @@ export const fetchPostById = cache(async (id: string) => {
 		return await query<Post>({
 			url: `/post/${id}`,
 			auth: true,
-			options: {
-				next: {
-					tags: [`post-${id}`],
-				},
-			},
 			client: true,
 		});
 	} catch (error) {

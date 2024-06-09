@@ -1,8 +1,8 @@
 'use client';
 
-import { CommentCountButton } from '@/src/entities/comment';
-import { Post, PostCard, fetchNewPosts } from '@/src/entities/post';
-import { memo, useCallback, useState } from 'react';
+import { Post, fetchNewPosts } from '@/src/entities/post';
+import { PostCard } from '@/src/widgets/post-card';
+import { useCallback, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 
 interface PostsListProps {
@@ -27,17 +27,12 @@ function PostsList({ initialPosts, page }: PostsListProps) {
 			className='mt-5'
 			useWindowScroll
 			totalCount={posts.length}
+			increaseViewportBy={{ top: 800, bottom: 800 }}
 			endReached={setNewPosts.bind(null, currentPage)}
 			data={posts}
-			itemContent={(index, post) => (
-				<PostCard
-					className='mb-5'
-					id={post.id}
-					commentsButton={<CommentCountButton count={post.comments.length} />}
-				/>
-			)}
+			itemContent={(index, post) => <PostCard className='mb-5' id={post.id} />}
 		/>
 	);
 }
 
-export default memo(PostsList);
+export default PostsList;
