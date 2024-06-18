@@ -1,30 +1,28 @@
 'use client';
 
 import { CommentCountButton } from '@/src/entities/comment';
+import CommentList from '@/src/entities/comment/ui/comment-list/CommentList';
 import { Post } from '@/src/entities/post';
 import { fetchPostById } from '@/src/entities/post/api/fetch-post-by-id/fetch-post-by-id';
 import { AddCommentForm } from '@/src/features/comment/add-comment';
 import { AddReactionButton } from '@/src/features/reaction/add-reaction';
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Card from '@/src/shared/ui/card/Card';
+import Divider from '@/src/shared/ui/divider/Divider';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
-import { ReactElement, memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 interface PostCardProps {
 	id: string;
 	className?: string;
-	/** slot for button to add reaction */
-	reaction?: ReactElement;
-	/** slot for comments list */
-	commentsList?: ReactElement;
 }
 
 dayjs.extend(relativeTime);
 
-function PostCard({ id, className, commentsList }: PostCardProps) {
+function PostCard({ id, className }: PostCardProps) {
 	const [post, setPost] = useState<Post>();
 
 	const getPostData = async () => {
@@ -71,10 +69,13 @@ function PostCard({ id, className, commentsList }: PostCardProps) {
 				<AddReactionButton revalidate={getPostData} post={post} />
 				<CommentCountButton count={post?.comments.length} />
 			</div>
-			<div>
-				{commentsList}
-				<AddCommentForm postId={post.id} revalidate={getPostData} />
-			</div>
+			{post.comments.length > 0 && (
+				<>
+					<Divider className='-mx-5' />
+					<CommentList comments={post.comments} />
+				</>
+			)}
+			<AddCommentForm postId={post.id} revalidate={getPostData} />
 		</Card>
 	);
 }
