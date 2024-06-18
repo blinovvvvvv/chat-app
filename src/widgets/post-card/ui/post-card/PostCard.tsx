@@ -13,7 +13,7 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 
 interface PostCardProps {
 	id: string;
@@ -25,9 +25,9 @@ dayjs.extend(relativeTime);
 function PostCard({ id, className }: PostCardProps) {
 	const [post, setPost] = useState<Post>();
 
-	const getPostData = async () => {
+	const getPostData = useCallback(async () => {
 		await fetchPostById(id).then((data) => setPost(data));
-	};
+	}, [id]);
 
 	useEffect(() => {
 		getPostData();
