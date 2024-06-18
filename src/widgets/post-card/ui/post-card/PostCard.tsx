@@ -3,6 +3,7 @@
 import { CommentCountButton } from '@/src/entities/comment';
 import { Post } from '@/src/entities/post';
 import { fetchPostById } from '@/src/entities/post/api/fetch-post-by-id/fetch-post-by-id';
+import { AddCommentForm } from '@/src/features/comment/add-comment';
 import { AddReactionButton } from '@/src/features/reaction/add-reaction';
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import Card from '@/src/shared/ui/card/Card';
@@ -17,23 +18,13 @@ interface PostCardProps {
 	className?: string;
 	/** slot for button to add reaction */
 	reaction?: ReactElement;
-	/** slot for button to view comments count */
-	commentsButton?: ReactElement;
 	/** slot for comments list */
 	commentsList?: ReactElement;
-	/** slot for add comment form */
-	addCommentForm?: ReactElement;
 }
 
 dayjs.extend(relativeTime);
 
-function PostCard({
-	id,
-	className,
-	commentsList,
-	commentsButton,
-	addCommentForm,
-}: PostCardProps) {
+function PostCard({ id, className, commentsList }: PostCardProps) {
 	const [post, setPost] = useState<Post>();
 
 	const getPostData = async () => {
@@ -66,7 +57,7 @@ function PostCard({
 				)}
 			</div>
 			{post?.imagePath && (
-				<div className='relative h-[260px] w-full'>
+				<div className='relative mb-2.5 h-[260px] w-full'>
 					<Image
 						src={`${process.env.NEXT_PUBLIC_SERVER_URL}${post.imagePath}`}
 						alt='Post picture'
@@ -76,12 +67,14 @@ function PostCard({
 					/>
 				</div>
 			)}
-			<div className='flex items-center gap-x-2.5'>
+			<div className='mb-3 flex items-center gap-x-2.5'>
 				<AddReactionButton revalidate={getPostData} post={post} />
 				<CommentCountButton count={post?.comments.length} />
 			</div>
-			{commentsList}
-			{addCommentForm}
+			<div>
+				{commentsList}
+				<AddCommentForm postId={post.id} revalidate={getPostData} />
+			</div>
 		</Card>
 	);
 }
