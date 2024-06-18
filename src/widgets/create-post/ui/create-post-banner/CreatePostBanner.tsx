@@ -24,6 +24,7 @@ export default function CreatePostBanner() {
 				variant='clear'
 				aria-label='Click to create your post!'
 				onClick={handleClick}
+				data-testid='create-post-banner'
 			>
 				<Card className='flex w-full items-center gap-x-3 transition-colors'>
 					<UserAvatar width={25} height={25} />

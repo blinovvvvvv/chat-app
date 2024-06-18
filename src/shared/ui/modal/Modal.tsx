@@ -11,9 +11,16 @@ interface ModalProps {
 	children: ReactNode;
 	isOpen?: boolean;
 	onClose?: () => void;
+	'data-testid'?: string;
 }
 
-function Modal({ children, className, isOpen, onClose }: ModalProps) {
+function Modal({
+	children,
+	className,
+	isOpen,
+	onClose,
+	'data-testid': dataTestId,
+}: ModalProps) {
 	const { close } = useModal({
 		onClose,
 		isOpen,
@@ -30,6 +37,7 @@ function Modal({ children, className, isOpen, onClose }: ModalProps) {
 					}
 				)}
 				aria-disabled={!isOpen}
+				data-testid={dataTestId}
 			>
 				<Overlay onClick={close} />
 				<div

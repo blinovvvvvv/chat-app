@@ -67,6 +67,7 @@ export default function CreatePostModal({
 			className='min-w-[650px]'
 			isOpen={isOpenModal}
 			onClose={handleClick}
+			data-testid='create-post-modal'
 		>
 			<form action={createPostFormAction}>
 				<Card variant='no-indent' className='flex flex-col gap-y-4 px-8 py-6'>
@@ -79,6 +80,7 @@ export default function CreatePostModal({
 						rows={14}
 						cols={10}
 						wrap='soft'
+						data-testid='create-post-modal-text'
 					/>
 					<div className='flex flex-col gap-y-4'>
 						{image && (
@@ -112,6 +114,7 @@ export default function CreatePostModal({
 						type='submit'
 						variant='outline'
 						aria-label='Click to post'
+						data-testid='create-post-modal-submit'
 					>
 						Post
 					</Button>
