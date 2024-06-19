@@ -1,5 +1,6 @@
 import '@/styles/globals.scss';
 import '@testing-library/jest-dom';
+import 'jest-fetch-mock';
 
 process.env.NEXT_PUBLIC_UPLOADS_URL = 'http://localhost:4000/uploads';
 

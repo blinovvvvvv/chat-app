@@ -1,4 +1,5 @@
 import { Post } from '@/src/entities/post';
+import { ReactionIcon } from '@/src/entities/reaction';
 import { useUserStore } from '@/src/entities/user';
 import LikeIcon from '@/src/shared/assets/like.svg';
 import { useHover } from '@/src/shared/lib/hooks/use-hover/useHover';
@@ -9,7 +10,6 @@ import { useCallback, useMemo } from 'react';
 import { setReactionToPost } from '../../api/set-reaction-to-post/set-reaction-to-post';
 import { SelectReaction } from '../../model/types/add-reaction.types';
 import ReactionsListPanel from '../reactions-list-panel/ReactionsListPanel';
-import ReactionIcon from './ReactionIcon';
 
 interface AddReactionButtonProps {
 	post: Post;
@@ -45,6 +45,7 @@ export default function AddReactionButton({
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 			className='relative'
+			data-testid='add-reaction-wrapper'
 		>
 			<Button
 				variant='clear'
@@ -56,6 +57,7 @@ export default function AddReactionButton({
 					}
 				)}
 				onClick={() => handleClick('like')}
+				data-testid='add-reaction-button'
 			>
 				{userReaction ? (
 					<ReactionIcon name={userReaction.name} />

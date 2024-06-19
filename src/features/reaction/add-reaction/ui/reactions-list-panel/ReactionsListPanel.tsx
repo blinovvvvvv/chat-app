@@ -31,6 +31,8 @@ export default function ReactionsListPanel({
 					['invisible opacity-0']: !visible,
 				}
 			)}
+			aria-disabled={!visible}
+			data-testid='add-reaction-panel'
 		>
 			<Card
 				variant='no-indent'

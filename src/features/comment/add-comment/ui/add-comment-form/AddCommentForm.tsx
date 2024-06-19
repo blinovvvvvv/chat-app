@@ -28,6 +28,7 @@ function AddCommentForm({ postId, revalidate }: AddCommentFormProps) {
 		<form
 			action={addCommentFormAction}
 			className='flex items-center justify-between'
+			data-testid='add-comment-form'
 		>
 			<Avatar width={35} height={35} />
 			<Input
@@ -36,6 +37,7 @@ function AddCommentForm({ postId, revalidate }: AddCommentFormProps) {
 				variant='small'
 				placeholder='Write comment...'
 				className='ml-[15px] mr-[30px] flex-grow'
+				data-testid='add-comment-form-text'
 			/>
 			<Button
 				disabled={!text}
@@ -43,6 +45,7 @@ function AddCommentForm({ postId, revalidate }: AddCommentFormProps) {
 					['cursor-not-allowed']: !text,
 				})}
 				variant='clear'
+				data-testid='add-comment-form-submit'
 			>
 				<svg
 					width='20'
