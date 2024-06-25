@@ -12,5 +12,6 @@ export async function updateProfile(formData: FormData) {
 		url: '/user/profile',
 		method: 'PUT',
 		body: { name, lastname, city },
+		auth: true,
 	});
 }

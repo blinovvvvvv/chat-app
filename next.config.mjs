@@ -3,10 +3,6 @@ const nextConfig = {
 	optimizeFonts: true,
 	reactStrictMode: true,
 	cleanDistDir: true,
-	compiler: {
-		/** remove data-testid props */
-		reactRemoveProperties: true,
-	},
 	eslint: {
 		dirs: ['src', 'app'],
 	},
