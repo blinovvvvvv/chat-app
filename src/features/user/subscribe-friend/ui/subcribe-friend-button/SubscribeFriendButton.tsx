@@ -29,7 +29,11 @@ function SubscribeFriendButton({
 
 	return (
 		<Button
-			className={clsx('px-4 text-xs', { ['bg-[#262626]']: isSubscribed })}
+			variant='clear'
+			className={clsx('rounded px-4 text-xs', {
+				['bg-[#262626]']: isSubscribed,
+				['bg-blue']: !isSubscribed,
+			})}
 			onClick={handleClick}
 			aria-label={ariaLabel}
 		>
