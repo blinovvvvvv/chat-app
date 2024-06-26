@@ -29,7 +29,7 @@ async function SubscribeFriend({ friendProfile }: SubscribeFriendProps) {
 			isSubscribed={isSubscribed || false}
 			friendId={friendProfile.id}
 		>
-			{isSubscribed ? 'You are subscribed' : 'Add friend'}
+			{isSubscribed ? 'You are subscribed' : 'Subscribe'}
 		</SubscribeFriendButton>
 	);
 }
