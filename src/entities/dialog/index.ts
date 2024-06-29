@@ -1,3 +1,3 @@
-export type { Dialog } from './model/types/dialog.types';
+export type { IDialog } from './model/types/dialog.types';
 
-export { default as DialogItem } from './ui/dialog/Dialog';
+export { default as DialogList } from './ui/dialog-list/DialogList';

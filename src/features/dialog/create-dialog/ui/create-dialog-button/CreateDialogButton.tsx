@@ -1,6 +1,6 @@
 'use client';
 
-import { Dialog } from '@/src/entities/dialog';
+import { IDialog } from '@/src/entities/dialog';
 import { useUserStore } from '@/src/entities/user';
 import { dialogSocket } from '@/src/shared/api/socket/socket';
 import Button from '@/src/shared/ui/button/Button';
@@ -19,7 +19,7 @@ function CreateDialogButton({ friendId }: CreateDialogButtonProps) {
 	useEffect(() => {
 		dialogSocket.emit('find_dialogs');
 
-		const onFindDialogsEvent = (args: Dialog[]) => {
+		const onFindDialogsEvent = (args: IDialog[]) => {
 			// bad solution, need more code organization on backend
 			const dialog = args.find((dialog) =>
 				dialog.members.find(

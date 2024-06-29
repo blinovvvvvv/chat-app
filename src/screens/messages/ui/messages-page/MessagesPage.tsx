@@ -1,6 +1,6 @@
 'use client';
 
-import { DialogList } from '@/src/widgets/dialog-list';
+import { DialogList } from '@/src/entities/dialog';
 import { Page } from '@/src/widgets/page';
 import { memo } from 'react';
 

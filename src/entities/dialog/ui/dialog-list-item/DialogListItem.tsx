@@ -1,27 +1,34 @@
 'use client';
 
-import { User, useUserStore } from '@/src/entities/user';
+import { IDialog } from '@/src/entities/dialog';
+import { useUserStore } from '@/src/entities/user';
 import Avatar from '@/src/shared/ui/avatar/Avatar';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { memo, useMemo } from 'react';
 
-interface DialogProps {
-	members: User[];
-	lastMessage?: string;
+interface DialogListItemProps {
+	dialog: IDialog;
 	className?: string;
 }
 
-function Dialog({ members, className, lastMessage }: DialogProps) {
+function DialogListItem({
+	dialog: { messages, members, id },
+	className,
+}: DialogListItemProps) {
 	const userId = useUserStore((state) => state.id);
 
 	const companion = useMemo(() => {
 		return members.find((member) => member.id !== userId);
 	}, [members, userId]);
 
+	const lastMessage = useMemo(() => {
+		if (messages && messages.length > 0) return messages.at(-1);
+	}, [messages]);
+
 	return (
 		<Link
-			href={`/messages/${companion?.id}`}
+			href={`/messages/${id}`}
 			className={clsx('flex items-start gap-x-4', className)}
 		>
 			<Avatar width={35} height={35} path={companion?.avatarPath} />
@@ -35,4 +42,4 @@ function Dialog({ members, className, lastMessage }: DialogProps) {
 	);
 }
 
-export default memo(Dialog);
+export default memo(DialogListItem);
