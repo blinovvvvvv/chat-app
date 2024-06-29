@@ -41,6 +41,7 @@ function SendMessageForm({ dialogId, className }: SendMessageFormProps) {
 		<form
 			className={clsx('-mx-4 border-t border-dark-gray-200', className)}
 			onSubmit={handleSubmit}
+			data-testid='send-message-form'
 		>
 			<div className='flex gap-6 px-6 py-3.5'>
 				<Input
@@ -49,8 +50,14 @@ function SendMessageForm({ dialogId, className }: SendMessageFormProps) {
 					value={text}
 					onChange={setText}
 					placeholder='Write message...'
+					data-testid='text-input'
 				/>
-				<Button variant='clear' disabled={!text} type='submit'>
+				<Button
+					variant='clear'
+					disabled={!text}
+					type='submit'
+					data-testid='send-button'
+				>
 					<svg
 						width='20'
 						height='20'
