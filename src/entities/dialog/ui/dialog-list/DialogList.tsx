@@ -1,7 +1,7 @@
 'use client';
 
 import { IDialog } from '@/src/entities/dialog';
-import { dialogSocket } from '@/src/shared/api/socket/socket';
+import { socket } from '@/src/shared/api/socket/socket';
 import Card from '@/src/shared/ui/card/Card';
 import Divider from '@/src/shared/ui/divider/Divider';
 import { useEffect, useState } from 'react';
@@ -12,9 +12,9 @@ export default function DialogList() {
 	const [dialogs, setDialogs] = useState<IDialog[]>([]);
 
 	useEffect(() => {
-		dialogSocket.emit('find_dialogs');
+		socket.emit('find_dialogs');
 
-		dialogSocket.on('find_dialogs', (args) => {
+		socket.on('find_dialogs', (args) => {
 			setDialogs(args);
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps

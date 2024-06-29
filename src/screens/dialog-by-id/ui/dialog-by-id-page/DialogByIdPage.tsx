@@ -1,7 +1,7 @@
 'use client';
 
 import { IDialog } from '@/src/entities/dialog';
-import { dialogSocket } from '@/src/shared/api/socket/socket';
+import { socket } from '@/src/shared/api/socket/socket';
 import { Dialog } from '@/src/widgets/dialog';
 import { Page } from '@/src/widgets/page';
 import { memo, useEffect, useState } from 'react';
@@ -14,21 +14,22 @@ interface DialogByIdPageProps {
 
 function DialogByIdPage({ params: { id } }: DialogByIdPageProps) {
 	const [dialog, setDialog] = useState<IDialog>();
+
 	useEffect(() => {
-		dialogSocket.emit('join_dialog', {
+		socket.emit('join_dialog', {
 			dialogId: id,
-			socketId: dialogSocket.id,
+			socketId: socket.id,
 		});
-		dialogSocket.emit('get_dialog', id);
+		socket.emit('get_dialog', id);
 
 		const onGetDialogEvent = (dialog: IDialog) => {
 			setDialog(dialog);
 		};
 
-		dialogSocket.on('get_dialog', onGetDialogEvent);
+		socket.on('get_dialog', onGetDialogEvent);
 
 		return () => {
-			dialogSocket.off('get_dialogs');
+			socket.off('get_dialogs');
 		};
 	}, [id]);
 

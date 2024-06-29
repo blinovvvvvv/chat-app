@@ -2,7 +2,7 @@
 
 import { IDialog } from '@/src/entities/dialog';
 import { useUserStore } from '@/src/entities/user';
-import { dialogSocket } from '@/src/shared/api/socket/socket';
+import { socket } from '@/src/shared/api/socket/socket';
 import Button from '@/src/shared/ui/button/Button';
 import { useRouter } from 'next/navigation';
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -17,7 +17,7 @@ function CreateDialogButton({ friendId }: CreateDialogButtonProps) {
 	const userId = useUserStore((state) => state.id);
 
 	useEffect(() => {
-		dialogSocket.emit('find_dialogs');
+		socket.emit('find_dialogs');
 
 		const onFindDialogsEvent = (args: IDialog[]) => {
 			// bad solution, need more code organization on backend
@@ -32,10 +32,10 @@ function CreateDialogButton({ friendId }: CreateDialogButtonProps) {
 			}
 		};
 
-		dialogSocket.on('find_dialogs', onFindDialogsEvent);
+		socket.on('find_dialogs', onFindDialogsEvent);
 
 		return () => {
-			dialogSocket.off('find_dialogs', onFindDialogsEvent);
+			socket.off('find_dialogs', onFindDialogsEvent);
 		};
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,7 +43,7 @@ function CreateDialogButton({ friendId }: CreateDialogButtonProps) {
 
 	const handleClick = useCallback(() => {
 		if (!dialogId) {
-			dialogSocket.emit('create', {
+			socket.emit('create', {
 				creatorId: userId,
 				userId: friendId,
 			});
