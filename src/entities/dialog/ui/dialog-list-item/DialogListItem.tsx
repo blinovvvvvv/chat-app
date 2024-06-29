@@ -23,7 +23,7 @@ function DialogListItem({
 	}, [members, userId]);
 
 	const lastMessage = useMemo(() => {
-		if (messages && messages.length > 0) return messages.at(-1);
+		if (messages && messages.length > 0) return messages[-1];
 	}, [messages]);
 
 	return (
@@ -36,7 +36,7 @@ function DialogListItem({
 				<span className='text-xs font-medium'>
 					{companion?.name} {companion?.lastname}
 				</span>
-				<p className='text-xs font-medium text-gray-500'>{lastMessage}</p>
+				<p className='text-xs font-medium text-gray-500'>{lastMessage?.text}</p>
 			</div>
 		</Link>
 	);
