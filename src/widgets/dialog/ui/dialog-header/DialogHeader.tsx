@@ -11,7 +11,7 @@ interface DialogHeaderProps {
 
 function DialogHeader({ companion }: DialogHeaderProps) {
 	return (
-		<div className='flex items-center justify-between'>
+		<div className='-mx-4 flex items-center justify-between border-b border-dark-gray-200 px-4 py-2.5'>
 			<Link className='flex items-center gap-2' href='/messages'>
 				<Image src={Arrow} alt='Arrow' className='rotate-90' />
 				<span className='text-xs font-medium text-gray-600'>Back</span>

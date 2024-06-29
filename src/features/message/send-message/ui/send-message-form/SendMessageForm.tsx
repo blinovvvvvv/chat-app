@@ -9,6 +9,7 @@ import { FormEvent, memo, useCallback, useState } from 'react';
 
 interface SendMessageFormProps {
 	dialogId: string;
+	className?: string;
 }
 
 export interface SendMessageProps {
@@ -17,7 +18,7 @@ export interface SendMessageProps {
 	text: string;
 }
 
-function SendMessageForm({ dialogId }: SendMessageFormProps) {
+function SendMessageForm({ dialogId, className }: SendMessageFormProps) {
 	const userId = useUserStore((state) => state.id);
 
 	const [text, setText] = useState('');
@@ -38,7 +39,7 @@ function SendMessageForm({ dialogId }: SendMessageFormProps) {
 
 	return (
 		<form
-			className='-mx-4 border-t border-dark-gray-200'
+			className={clsx('-mx-4 border-t border-dark-gray-200', className)}
 			onSubmit={handleSubmit}
 		>
 			<div className='flex gap-6 px-6 py-3.5'>

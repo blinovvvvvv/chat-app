@@ -1,11 +1,12 @@
 'use client';
 
 import { IDialog } from '@/src/entities/dialog';
+import { IMessage, MessageList } from '@/src/entities/message';
 import { useUserStore } from '@/src/entities/user';
 import { SendMessageForm } from '@/src/features/message/send-message';
 import { socket } from '@/src/shared/api/socket/socket';
 import Card from '@/src/shared/ui/card/Card';
-import { memo, useEffect, useMemo } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import DialogHeader from '../dialog-header/DialogHeader';
 
 interface DialogProps {
@@ -13,6 +14,7 @@ interface DialogProps {
 }
 
 function Dialog({ dialog }: DialogProps) {
+	const [messages, setMessages] = useState<IMessage[]>(dialog.messages);
 	const userId = useUserStore((state) => state.id);
 
 	const companion = useMemo(() => {
@@ -21,7 +23,7 @@ function Dialog({ dialog }: DialogProps) {
 
 	useEffect(() => {
 		socket.on('get_message', (args) => {
-			console.log(args);
+			setMessages((prev) => [...prev, args]);
 		});
 
 		return () => {
@@ -33,11 +35,10 @@ function Dialog({ dialog }: DialogProps) {
 
 	return (
 		// 40px margins 50px header height
-		<Card className='flex h-[calc(100vh-40px-50px)] flex-col pb-0'>
+		<Card className='flex h-[calc(100vh-40px-50px)] flex-col py-0'>
 			<DialogHeader companion={companion} />
-			{/** messages list */}
-			<div className='flex-grow' />
-			<SendMessageForm dialogId={dialog.id} />
+			<MessageList className='flex-grow' messages={messages} />
+			<SendMessageForm className='mt-4' dialogId={dialog.id} />
 		</Card>
 	);
 }
