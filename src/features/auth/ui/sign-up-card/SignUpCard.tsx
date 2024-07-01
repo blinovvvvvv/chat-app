@@ -53,7 +53,7 @@ export default function SignUpCard({
 			<div>
 				<div className='flex flex-col items-center gap-y-10 self-center'>
 					<Image src={Logo} alt='logo' />
-					<div className='flex w-[225px] items-center justify-between self-start mobile:w-[200px]'>
+					<div className='mobile:w-[200px] flex w-[225px] items-center justify-between self-start'>
 						<Button
 							data-testid='signup-card-change-tab'
 							variant='clear'
@@ -75,6 +75,7 @@ export default function SignUpCard({
 					onChange={changeName}
 					placeholder='Your name'
 					aria-label='Your name'
+					data-testid='signup-card-name'
 					required
 				/>
 				<Input
@@ -82,6 +83,7 @@ export default function SignUpCard({
 					onChange={changeLastname}
 					placeholder='Your lastname'
 					aria-label='Your lastname'
+					data-testid='signup-card-lastname'
 					required
 				/>
 				<Input
@@ -107,7 +109,11 @@ export default function SignUpCard({
 					minLength={8}
 					required
 				/>
-				<Button className='mt-10' type='submit'>
+				<Button
+					className='mt-10'
+					type='submit'
+					data-testid='signup-card-button'
+				>
 					Sign Up
 				</Button>
 			</form>

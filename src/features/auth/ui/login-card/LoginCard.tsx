@@ -39,7 +39,7 @@ function LoginCard({
 	return (
 		<div
 			className={clsx(
-				'flex flex-shrink-0 basis-full flex-col gap-y-12 mobile:gap-y-8',
+				'mobile:gap-y-8 flex flex-shrink-0 basis-full flex-col gap-y-12',
 				className
 			)}
 			data-testid='login-card'
@@ -95,7 +95,7 @@ function LoginCard({
 					minLength={8}
 					required
 				/>
-				<Button className='mt-10' type='submit'>
+				<Button className='mt-10' type='submit' data-testid='login-card-button'>
 					Login
 				</Button>
 			</form>
